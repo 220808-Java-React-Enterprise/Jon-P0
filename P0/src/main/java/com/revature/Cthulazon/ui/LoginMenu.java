@@ -127,7 +127,7 @@ public class LoginMenu implements IMenu {
                             System.out.println("Enter your email address:");
                             emailAddress = scan.nextLine();
                             try {
-                                userService.isValidFirstName(emailAddress);
+                                userService.isValidEmail(emailAddress);
                                 break emailAddressExit;
                             } catch (InvalidUserException e) {
                                 System.out.println(e.getMessage());

@@ -30,9 +30,9 @@ private final UserDAO userDAO;
     }
 
     public void isValidEmail(String emailAddress) {
-        if (!emailAddress.matches("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$"))
-            throw new InvalidUserException("\nInvalid email");
-    }
+        if (!emailAddress.matches("^[A-Za-z0-9+_.-]+@(.+)$"))
+            throw new InvalidUserException("\nInvalid email, only A-Z,a-z,0-9 is allowed");
+}
 
     public void isValidFirstName(String firstName) {
         if (!firstName.matches("^[A-Z][a-zA-Z]+$")) throw new InvalidUserException("\nInvalid First Name");
