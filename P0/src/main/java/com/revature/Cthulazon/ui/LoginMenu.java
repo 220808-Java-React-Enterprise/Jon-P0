@@ -1,14 +1,14 @@
 package com.revature.Cthulazon.ui;
-
-import java.util.Scanner;
-
 import com.revature.Cthulazon.models.*;
 import com.revature.Cthulazon.services.UserService;
 import com.revature.Cthulazon.utils.Custom_Exceptions.InvalidUserException;
-
+import java.util.List;
+import java.util.Scanner;
+import java.util.UUID;
 public class LoginMenu implements IMenu {
     String userInput = "";
     private final UserService userService;
+
     public LoginMenu(UserService userService) {
         this.userService = userService;
     }
@@ -30,6 +30,7 @@ public class LoginMenu implements IMenu {
                         break;
                     case "2":
                         User user = signup();
+                        userService.register(user);
                         break;
                     case "3":
                         System.out.println("Goodbye!");
@@ -53,7 +54,7 @@ public class LoginMenu implements IMenu {
         String password = "";
         String lastName = "";
         String firstName = "";
-        String emailAddress= "";
+        String emailAddress = "";
         User user = null;
 
         Scanner scan = new Scanner(System.in);
@@ -93,6 +94,24 @@ public class LoginMenu implements IMenu {
                         }
                     }
                 }
+                emailAddressExit:
+                {
+
+                    while (true) {
+                        {
+                            System.out.println("Enter your email address:");
+                            emailAddress = scan.nextLine();
+                            try {
+                                userService.isValidFirstName(emailAddress);
+                                break emailAddressExit;
+                            } catch (InvalidUserException e) {
+                                System.out.println(e.getMessage());
+                            }
+                        }
+
+                    }
+                }
+
 
                 firstNameExit:
                 {
@@ -129,8 +148,27 @@ public class LoginMenu implements IMenu {
 
                     }
                 }
+                confirmExit:
+                {
+                    while (true) {
+                        System.out.println("\nIs this correct (y/n):");
+                        System.out.println("Username: " + username + "\nPassword: " + password + "\nEmail Address " + emailAddress + "\nFirst Name " +firstName + "\nLast Name " +lastName);
+                        System.out.print("\nEnter: ");
 
-                break exit;
+                        switch (scan.nextLine().toLowerCase()) {
+                            case "y":
+                                user = new User(UUID.randomUUID().toString(), username, password,emailAddress,firstName,lastName);
+                                return user;
+                            case "n":
+                                System.out.println("\nRestarting...");
+                                break confirmExit;
+                            default:
+                                System.out.println("\nInvalid input!");
+                                break;
+                        }
+                        break exit;
+                    }
+                }
             }
         }
         return user;

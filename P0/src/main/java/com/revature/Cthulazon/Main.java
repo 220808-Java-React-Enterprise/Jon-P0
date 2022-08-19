@@ -1,4 +1,6 @@
 package com.revature.Cthulazon;
+import com.revature.Cthulazon.dao.UserDAO;
+import com.revature.Cthulazon.services.UserService;
 import com.revature.Cthulazon.ui.LoginMenu;
 import com.revature.Cthulazon.utils.database.*;
 import java.sql.SQLException;
@@ -7,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
 
 
-        //ew LoginMenu().start();
+        new LoginMenu(new UserService(new UserDAO())).start();
 
         try{
             System.out.println(ConnectionFactory.getInstance().getConnection());

@@ -29,6 +29,11 @@ private final UserDAO userDAO;
         if (!password.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$")) throw new InvalidUserException("\nInvalid password! Minimum eight characters, at least one letter and one number");
     }
 
+    public void isValidEmail(String emailAddress) {
+        if (!emailAddress.matches("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$"))
+            throw new InvalidUserException("\nInvalid email");
+    }
+
     public void isValidFirstName(String firstName) {
         if (!firstName.matches("^[A-Z][a-zA-Z]+$")) throw new InvalidUserException("\nInvalid First Name");
 

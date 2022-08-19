@@ -9,18 +9,21 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class UserDAO implements InterfaceDAO<User> {
-
+//Insert to db and save
     @Override
     public void save(User obj) {
         try (Connection con = ConnectionFactory.getInstance().getConnection()) {
-            PreparedStatement ps = con.prepareStatement("INSERT INTO users (id, username, password, role) VALUES (?, ?, ?, ?)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO users (userid,username,password,ROLE,emailaddress,firstname,lastname) values (?, ?, ?, ?, ?, ?, ?)");
             ps.setString(1, obj.getUserID());
             ps.setString(2, obj.getUserName());
             ps.setString(3, obj.getPassword());
             ps.setString(4, obj.getRole());
+            ps.setString(5, obj.getEmailAddress());
+            ps.setString(6, obj.getFirstName());
+            ps.setString(7, obj.getLastName());
             ps.executeUpdate();
         } catch (SQLException e) {
-            throw new InvalidSQLException("An error occurred when tyring to save to the database.");
+            throw new InvalidSQLException("An error occurred when trying to save to the database.");
         }
     }
 

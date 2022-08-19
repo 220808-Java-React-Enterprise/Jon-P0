@@ -15,14 +15,26 @@ public class User {
     {}
 
 
-    public User(String userID, String userName, String password, String role,String firstName,String lastName ,String emailAddress) {
+    public User(String userID, String userName, String password,String firstName,String lastName ,String emailAddress,String role) {
+
+        this.userID = userID;
+        this.userName= userName;
+        this.password=password;
+        this.role="Default";
+        this.emailAddress = emailAddress;
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public User(String userID,String userName, String password, String emailAddress, String firstName, String lastName) {
+        this.userID=userID;
         this.userName= userName;
-        this.emailAddress = emailAddress;
-        this.userID = userID;
         this.password=password;
-        this.role=role;
+        this.role="Default";
+        this.emailAddress = emailAddress;
+        this.firstName = firstName;
+        this.lastName = lastName;
+
     }
 
 
@@ -77,6 +89,22 @@ public class User {
 
     public String getPassword(){return password;}
 
-    public String getRole(){return password;}
+    public String getRole(){return role;}
     //Actions
+
+    public String toFileString() {
+        return userID + ":" + userName + ":" + password + ":" + role + ":"+ emailAddress + "\n";
+    }
+    @Override
+    public String toString() {
+        return "User{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", emailAddress='" + emailAddress + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                ", userID='" + userID + '\'' +
+                '}';
+    }
 }
