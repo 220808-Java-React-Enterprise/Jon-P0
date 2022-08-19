@@ -1,7 +1,11 @@
 package com.revature.Cthulazon.ui;
 import com.revature.Cthulazon.models.*;
-import com.revature.Cthulazon.services.UserService;
 import com.revature.Cthulazon.utils.Custom_Exceptions.InvalidUserException;
+import com.revature.Cthulazon.dao.StoreDAO;
+import com.revature.Cthulazon.dao.UserDAO;
+import com.revature.Cthulazon.services.UserService;
+import com.revature.Cthulazon.services.StoreService;
+
 import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
@@ -45,10 +49,31 @@ public class LoginMenu implements IMenu {
     }
 
     private void login() {
-        System.out.println("" + "implementation");
+        String username = "";
+        String password = "";
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("\nLogging in...");
+        exit:
+        {
+            while (true) {
+                System.out.print("\nEnter username: ");
+                username = scan.nextLine();
+
+                System.out.print("\nEnter password: ");
+                password = scan.nextLine();
+                    try{
+                        User user = userService.login(username, password);
+                        if (user.getRole().equals("ADMIN")) new AdminMenu(user, new UserService(new UserDAO())).start();
+                        else new MainMenu(user, new UserService(new UserDAO()), new StoreService(new StoreDAO())).start();
+                        break exit;
+                    }catch(InvalidUserException e){
+                    System.out.println(e.getMessage());
+
+                }
+            }
+        }
     }
-
-
     private User signup() {
         String username = "";
         String password = "";

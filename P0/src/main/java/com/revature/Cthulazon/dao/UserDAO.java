@@ -1,7 +1,9 @@
 package com.revature.Cthulazon.dao;
+
 import com.revature.Cthulazon.models.User;
 import com.revature.Cthulazon.utils.Custom_Exceptions.InvalidSQLException;
 import com.revature.Cthulazon.utils.database.ConnectionFactory;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,7 +11,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class UserDAO implements InterfaceDAO<User> {
-//Insert to db and save
+    //Insert to db and save
     @Override
     public void save(User obj) {
         try (Connection con = ConnectionFactory.getInstance().getConnection()) {
@@ -41,12 +43,27 @@ public class UserDAO implements InterfaceDAO<User> {
     public User getById(String userID) {
         try (Connection con = ConnectionFactory.getInstance().getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM users WHERE userID = ?");
-            ps.setString(1,userID) ;
+            ps.setString(1, userID);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                return new User(rs.getString("userID"), rs.getString("userName"), rs.getString("password"), rs.getString("role"),rs.getString("firstName"),rs.getString("lastName"),rs.getString("emailAddress"));
+                return new User(rs.getString("userID"), rs.getString("userName"), rs.getString("password"), rs.getString("role"), rs.getString("firstName"), rs.getString("lastName"), rs.getString("emailAddress"));
             }
+
+        } catch (SQLException e) {
+            throw new InvalidSQLException("An error occurred when tyring to save to the database.");
+        }
+
+        return null;
+    }
+
+    public String getUsername(String username) {
+        try (Connection con = ConnectionFactory.getInstance().getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT (username) FROM users WHERE username = ?");
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) return rs.getString("username");
 
         } catch (SQLException e) {
             throw new InvalidSQLException("An error occurred when tyring to save to the database.");
@@ -68,7 +85,7 @@ public class UserDAO implements InterfaceDAO<User> {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next())
-                return new User(rs.getString("userID"), rs.getString("userName"), rs.getString("password"), rs.getString("role"),rs.getString("firstName"),rs.getString("lastName"),rs.getString("emailAddress"));
+                return new User(rs.getString("userID"), rs.getString("userName"), rs.getString("password"), rs.getString("role"), rs.getString("firstName"), rs.getString("lastName"), rs.getString("emailAddress"));
         } catch (SQLException e) {
             throw new InvalidSQLException("An error occurred when tyring to save to the database.");
         }
