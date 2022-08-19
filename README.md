@@ -17,10 +17,10 @@ Purpose: Sell Product(Souls)
 *Admin update inventory
 
 ### More Features to implement:
-*Cart to hold products
-*Order to hold details of purchases
-*Sort Orders by cost and date
-*view Customer by admin
-*view Location history by admin
-*Test Cases.
+-Cart to hold products
+-Order to hold details of purchases
+-Sort Orders by cost and date
+-view Customer by admin
+-view Location history by admin
+-Test Cases.
 
