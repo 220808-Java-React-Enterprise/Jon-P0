@@ -17,15 +17,12 @@ public class StoreService {
     }
 
 
-    public static Store isValidStore(String location){
-        Store store=StoreDAO.isValidDAO(location);
+    public Store isValidStore(String location){
+        Store store=storeDAO.isValidStoreDAO(location);
         if (store==null) throw new InvalidStoreException("/nStore does not exist");
         return store;
     }
 
 
-    public void getStore(String location)
-    {
-        Store store= storeDAO.isValidDAO(location);
+
     }
-}

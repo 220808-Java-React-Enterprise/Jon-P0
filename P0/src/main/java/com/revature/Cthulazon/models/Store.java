@@ -6,6 +6,8 @@ public class Store {
     String storeID;
     String location;
     String soulInventory;
+public Store()
+{}
 
         public Store(String storeID, String location, String soulInventory) {
         this.storeID = storeID;

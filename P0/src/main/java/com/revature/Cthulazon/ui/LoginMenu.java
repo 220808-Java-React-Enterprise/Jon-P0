@@ -64,7 +64,7 @@ public class LoginMenu implements IMenu {
                 password = scan.nextLine();
                     try{
                         User user = userService.login(username, password);
-                        if (user.getRole().equals("ADMIN")) new AdminMenu(user, new UserService(new UserDAO())).start();
+                        if (user.getRole().equals("ADMIN")) new AdminMenu(user, new UserService(new UserDAO()), new StoreService(new StoreDAO())).start();
                         else new MainMenu(user, new UserService(new UserDAO()), new StoreService(new StoreDAO())).start();
                         break exit;
                     }catch(InvalidUserException e){
