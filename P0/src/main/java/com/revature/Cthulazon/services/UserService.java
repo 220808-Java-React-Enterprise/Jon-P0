@@ -30,7 +30,7 @@ private final UserDAO userDAO;
     }
 
     public void isValidEmail(String emailAddress) {
-        if (!emailAddress.matches("^[A-Za-z0-9+_.-]+@(.+)$"))
+        if (!emailAddress.matches("[A-Za-z0-9][A-Za-z0-9!#$%&'*+\\-/=?^_`{}|]{0,63}@[A-Za-z0-9.-]{1,253}.[A-Za-z]{2,24}"))
             throw new InvalidUserException("\nInvalid email, only A-Z,a-z,0-9 is allowed");
 }
 
@@ -43,6 +43,11 @@ private final UserDAO userDAO;
         if (!lastName.matches("^[A-Z][a-zA-Z]+$")) throw new InvalidUserException("\nInvalid Last Name");
 
     }
+public void isDuplicateUsername(String userName)
+{
+    if(userDAO.getUsername(userName)!=null)
+        throw new InvalidUserException(("userName already taken"));
 
+}
 
 }

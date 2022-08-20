@@ -15,15 +15,15 @@ public class User {
     {}
 
 
-    public User(String userID, String userName, String password,String firstName,String lastName ,String emailAddress,String role) {
+    public User(String userID, String userName, String password,String role,String firstName,String lastName,String emailAddress) {
 
         this.userID = userID;
         this.userName= userName;
         this.password=password;
-        this.role="Default";
         this.emailAddress = emailAddress;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.role=role;
     }
 
     public User(String userID,String userName, String password, String emailAddress, String firstName, String lastName) {

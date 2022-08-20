@@ -98,6 +98,8 @@ public class LoginMenu implements IMenu {
                         username = scan.nextLine();
                         try {
                             userService.isValidUsername(username);
+
+                           userService.isDuplicateUsername(username);
                             break usernameExit;
                         } catch (InvalidUserException e) {
                             System.out.println(e.getMessage());

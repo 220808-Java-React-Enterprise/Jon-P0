@@ -1,5 +1,6 @@
 package com.revature.Cthulazon.dao;
 import com.revature.Cthulazon.models.Store;
+import com.revature.Cthulazon.services.StoreService;
 import com.revature.Cthulazon.models.User;
 import com.revature.Cthulazon.utils.Custom_Exceptions.InvalidSQLException;
 import com.revature.Cthulazon.utils.database.ConnectionFactory;
@@ -48,6 +49,22 @@ public class StoreDAO implements InterfaceDAO<Store>{
         }
 
         return locations;
+    }
+
+    public static Store isValidDAO(String location) {
+        try (Connection con = ConnectionFactory.getInstance().getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM stores WHERE location= ?");
+            ps.setString(1, location);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return new Store(rs.getString("storeID"), rs.getString("location"), rs.getString("soulInventory"));
+            }
+
+        } catch (SQLException e) {
+            throw new InvalidSQLException("An error occurred when accessing  the database.");
+        }
+        return null;
     }
 }
 

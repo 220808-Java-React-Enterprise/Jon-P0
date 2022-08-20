@@ -87,7 +87,7 @@ public class UserDAO implements InterfaceDAO<User> {
             if (rs.next())
                 return new User(rs.getString("userID"), rs.getString("userName"), rs.getString("password"), rs.getString("role"), rs.getString("firstName"), rs.getString("lastName"), rs.getString("emailAddress"));
         } catch (SQLException e) {
-            throw new InvalidSQLException("An error occurred when tyring to save to the database.");
+            throw new InvalidSQLException("An error occurred when trying to save to the database.");
         }
 
         return null;

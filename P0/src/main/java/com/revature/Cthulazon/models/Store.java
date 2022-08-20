@@ -5,9 +5,9 @@ import java.util.List;
 public class Store {
     String storeID;
     String location;
-    int soulInventory;
+    String soulInventory;
 
-    public Store(String storeID, String location, int soulInventory) {
+        public Store(String storeID, String location, String soulInventory) {
         this.storeID = storeID;
         this.location = location;
         this.soulInventory = soulInventory;
@@ -27,7 +27,7 @@ public class Store {
         this.location = location;
     }
 
-    public void setSoulInventory(int soulInventory) {
+    public void setSoulInventory(String soulInventory) {
         this.soulInventory = soulInventory;
     }
 
@@ -39,7 +39,7 @@ public class Store {
         return location;
     }
 
-    public int getSoulInventory() {
+    public String getSoulInventory() {
         return soulInventory;
     }
 }
