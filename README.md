@@ -5,20 +5,18 @@ Purpose: Sell Product(Souls)
 
 ## Progress:
 
-*Login(works but needs some guard statements)(90%)
+*Login(works but needs some guard statements)(95%)
+-some testing
+*SignUp(Works but needs some guard statements)(99%)
+ -samepass verification, some testing
 
-*SignUp(Works but needs some guard statements)(90%)
- -guard statement for duplicate
- -samepass verification,
- -email
 *Store(DAO and StoreService made, need to add methods to DAO)(33%)
-*Product(Set up, Needs to be tied to store)(10%)
+*Product(Set up,view store location needs to be added and product listings)(20%)
 *Order(to be implemented)(0%)
 
 ### Current work:
 *Select Store Location
 *View Products in Location
-*Admin update inventory
 
 ### More Features to implement:
 
