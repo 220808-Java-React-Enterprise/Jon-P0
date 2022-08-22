@@ -4,20 +4,21 @@ import java.util.List;
 
 public class Store {
     String storeID;
-    String location;
+    String storeNumber;
+    String city;
     String soulInventory;
 public Store()
 {}
 
-        public Store(String storeID, String location, String soulInventory) {
+        public Store(String storeID, String city, String soulInventory) {
         this.storeID = storeID;
-        this.location = location;
+        this.city = city;
         this.soulInventory = soulInventory;
     }
 
-    public Store(String storeID, String location) {
+    public Store(String storeID, String city) {
         this.storeID = storeID;
-        this.location = location;
+        this.city = city;
     }
 
     public Store(String storeID) {
@@ -29,8 +30,8 @@ public Store()
         this.storeID = storeID;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setCity(String location) {
+        this.city = city;
     }
 
     public void setSoulInventory(String soulInventory) {
@@ -41,8 +42,8 @@ public Store()
         return storeID;
     }
 
-    public String getLocation() {
-        return location;
+    public String getCity() {
+        return city;
     }
 
     public String getSoulInventory() {

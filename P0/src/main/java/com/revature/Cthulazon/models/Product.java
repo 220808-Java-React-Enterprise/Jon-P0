@@ -10,9 +10,9 @@ public class Product {
     public Product(String soulID, String sanityGrade, String storeID, int costToBuy, boolean avaliable) {
         this.soulID = soulID;
         this.sanityGrade = sanityGrade;
-        this.storeID = storeID;
         this.costToBuy = costToBuy;
         this.avaliable = avaliable;
+        this.storeID = storeID;
     }
 
     public void setSoulID(String soulID) {
