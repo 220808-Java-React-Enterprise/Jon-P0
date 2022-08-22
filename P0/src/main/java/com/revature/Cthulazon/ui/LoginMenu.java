@@ -1,5 +1,7 @@
 package com.revature.Cthulazon.ui;
+import com.revature.Cthulazon.dao.CartDAO;
 import com.revature.Cthulazon.models.*;
+import com.revature.Cthulazon.services.CartService;
 import com.revature.Cthulazon.utils.Custom_Exceptions.InvalidUserException;
 import com.revature.Cthulazon.dao.StoreDAO;
 import com.revature.Cthulazon.dao.UserDAO;
@@ -65,7 +67,7 @@ public class LoginMenu implements IMenu {
                     try{
                         User user = userService.login(username, password);
                         if (user.getRole().equals("ADMIN")) new AdminMenu(user, new UserService(new UserDAO()), new StoreService(new StoreDAO())).start();
-                        else new MainMenu(user, new UserService(new UserDAO()), new StoreService(new StoreDAO())).start();
+                        else new MainMenu(user, new UserService(new UserDAO()), new StoreService(new StoreDAO()),new CartService(new CartDAO())).start();
                         break exit;
                     }catch(InvalidUserException e){
                     System.out.println(e.getMessage());

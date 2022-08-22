@@ -20,6 +20,10 @@ public Store()
         this.location = location;
     }
 
+    public Store(String storeID) {
+    this.storeID=storeID;
+    }
+
 
     public void setStoreID(String storeID) {
         this.storeID = storeID;

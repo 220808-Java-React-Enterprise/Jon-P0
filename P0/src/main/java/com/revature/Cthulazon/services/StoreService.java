@@ -2,7 +2,9 @@ package com.revature.Cthulazon.services;
 import com.revature.Cthulazon.dao.StoreDAO;
 import com.revature.Cthulazon.models.Store;
 import com.revature.Cthulazon.models.User;
+import com.revature.Cthulazon.utils.Custom_Exceptions.InvalidSQLException;
 import com.revature.Cthulazon.utils.Custom_Exceptions.InvalidStoreException;
+import com.revature.Cthulazon.utils.Custom_Exceptions.InvalidUserException;
 
 import java.util.List;
 public class StoreService {
@@ -17,12 +19,15 @@ public class StoreService {
     }
 
 
-    public Store isValidStore(String location){
-        Store store=storeDAO.isValidStoreDAO(location);
-        if (store==null) throw new InvalidStoreException("/nStore does not exist");
-        return store;
+    public Store isValidStore(String storeID){
+        Store store=storeDAO.isStoreTakenDAO(storeID);
+            throw new InvalidUserException(("Store already taken"));
     }
 
+    public Store isStoreTaken(String storeID){
+        if(storeDAO.isStoreTakenDAO(storeID)!=null);
+        throw new InvalidSQLException("Store is taken");
+    }
 
 
     }
