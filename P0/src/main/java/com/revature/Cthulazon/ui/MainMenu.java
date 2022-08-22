@@ -39,11 +39,11 @@ public class MainMenu implements IMenu {
         {
             while (true) {
                 System.out.println("\nWelcome to the main menu " + user.getUserName() + "!");
-                System.out.println("[1] View all locations");
-                System.out.println("[2] Select Store");
+                System.out.println("[1] View all locations!");
+                System.out.println("[2] Select Store!");
                 System.out.println("[3] View Cart!");
                 System.out.println("[4] CheckOut!");
-                System.out.println("[5] View Past ");
+                System.out.println("[5] AddProduct! ");
                 System.out.println("[6] Exit");
                 System.out.print("\nEnter: ");
 
@@ -52,12 +52,14 @@ public class MainMenu implements IMenu {
                         viewLocations();
                         break;
                     case "2":
-                        System.out.println("Implementing");
+                        System.out.println("You are now viewing");
+
                     case "3":
                         System.out.println("Printing Your Cart...");
                         System.out.println("items currently in your cart");
                         System.out.println("-------------------------------------------------------------------------------");
                         viewCart();
+                        break;
                     case "4":
                         System.out.println("CHECKOUT");
                         System.out.println("-------------------------------------------------------------------------------");
@@ -65,9 +67,12 @@ public class MainMenu implements IMenu {
                         LocalDateTime dateNow = LocalDateTime.now();
                         String date= String.valueOf(dateNow);
                         Orders order = new Orders(UUID.randomUUID().toString(), userCart.getCartID(), user.getUserID(), currentstore.getStoreID(), date, 1);
+                        System.out.println(order);
+                        System.out.println("You now own:" +userCart.getSoulID());
 
                         break exit;
                     case "5":
+                        addProduct();
                         break exit;
                     case "6":
                         break exit;
@@ -106,4 +111,16 @@ public class MainMenu implements IMenu {
         System.out.println(userCart.toString());
     }
 
+   private void addProduct(){
+    Scanner scan=new Scanner(System.in);
+    String iWant;
+
+            System.out.println("enter an productID!");
+                    iWant=scan.nextLine();
+
+        userCart.setSoulID(iWant);
+
+    }
+
 }
+
