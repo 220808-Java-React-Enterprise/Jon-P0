@@ -6,8 +6,8 @@ import java.util.Date;
 
 public class Orders {
 
-    String orderID ;
-    String userID ;
+    String orderID;
+    String userID;
     String storeID;
     String date;
     int amount;
@@ -15,7 +15,14 @@ public class Orders {
     public Orders() {
     }
 
-    public Orders(String orderID, String cartID, String userID, String storeID, String date, int amount){}
+    public Orders(String orderID, String userID, String storeID, String date, int amount) {
+        this.orderID = orderID;
+        this.userID = userID;
+        this.storeID = storeID;
+        this.date = date;
+        this.amount = amount;
+
+    }
 
 
     public void setOrderID(String orderID) {
@@ -56,9 +63,18 @@ public class Orders {
         return date;
     }
 
-    public double getAmount() {
+    public int getAmount() {
         return amount;
     }
 
-
+    @Override
+    public String toString() {
+        return "Orders{" +
+                "orderID='" + orderID + '\'' +
+                ", userID='" + userID + '\'' +
+                ", storeID='" + storeID + '\'' +
+                ", date='" + date + '\'' +
+                ", amount=" + amount +
+                '}';
+    }
 }

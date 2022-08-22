@@ -15,11 +15,12 @@ public class OrderDAO implements InterfaceDAO<Orders> {
         @Override
         public void save(Orders obj) {
             try (Connection con = ConnectionFactory.getInstance().getConnection()) {
-                PreparedStatement ps = con.prepareStatement("INSERT INTO orders(userID,storeID,date,total) values (?, ? ,?,?)");
+                PreparedStatement ps = con.prepareStatement("INSERT INTO orders(orderID,userID,storeID,date,total) values (?, ?,? ,?,?)");
                 ps.setString(1, obj.getOrderID());
                 ps.setString(2, obj.getUserID());
-                ps.setString(3, obj.getDate());
-                ps.setInt(4, (int) obj.getAmount());
+                ps.setString(3,obj.getStoreID());
+                ps.setString(4, obj.getDate());
+                ps.setInt(5,  obj.getAmount());
 
                 ps.executeUpdate();
             } catch (SQLException e) {
@@ -45,7 +46,7 @@ public class OrderDAO implements InterfaceDAO<Orders> {
                 ResultSet rs = ps.executeQuery();
 
                 if (rs.next()) {
-                    return new Orders(rs.getString("OrderID"), rs.getString("cartID"), rs.getString("userID"),rs.getString("storeID"),rs.getString("Date"),rs.getInt("Amount"));
+                    return new Orders(rs.getString("OrderID"), rs.getString("userID"),rs.getString("storeID"),rs.getString("Date"),rs.getInt("Amount"));
                 }
 
             } catch (SQLException e) {
