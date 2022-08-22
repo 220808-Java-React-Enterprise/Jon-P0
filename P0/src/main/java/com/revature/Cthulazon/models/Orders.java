@@ -1,29 +1,25 @@
 package com.revature.Cthulazon.models;
-import com.revature.Cthulazon.models.*;
-import com.revature.Cthulazon.dao.*;
-import com.revature.Cthulazon.services.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class Orders {
+
     String orderID ;
-    String cartID ;
     String userID ;
     String storeID;
-    Date date;
-    double amount;
+    String date;
+    int amount;
+
     public Orders() {
     }
 
-    public Orders(String orderID, String cartID, String userID, String storeID, Date date, double amount){}
+    public Orders(String orderID, String cartID, String userID, String storeID, String date, int amount){}
 
 
     public void setOrderID(String orderID) {
         this.orderID = orderID;
-    }
-
-    public void setCartID(String cartID) {
-        this.cartID = cartID;
     }
 
     public void setUserID(String userID) {
@@ -35,10 +31,11 @@ public class Orders {
     }
 
     public void setDate(Date date) {
-        this.date = date;
+
+
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 
@@ -46,9 +43,6 @@ public class Orders {
         return orderID;
     }
 
-    public String getCartID() {
-        return cartID;
-    }
 
     public String getUserID() {
         return userID;
@@ -58,11 +52,13 @@ public class Orders {
         return storeID;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
     public double getAmount() {
         return amount;
     }
+
+
 }

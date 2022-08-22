@@ -1,6 +1,4 @@
 package com.revature.Cthulazon.models;
-import com.revature.Cthulazon.services.*;
-import com.revature.Cthulazon.models.Product;
 import java.util.List;
 
 public class Cart {
@@ -14,14 +12,19 @@ public class Cart {
     public Cart(String cartID, String userID,String soulID)
     {
         this.cartID=cartID;
-        this.listOfSouls=listOfSouls;
         this.userID=userID;
+        this.soulID=soulID;
     }
-    public Cart(String cartID,String SoulID, String userID,List<Product> listOfSouls)
+    public Cart(String cartID, String userID,String SoulID,List<Product> listOfSouls)
     {
     this.cartID=cartID;
             this.listOfSouls=listOfSouls;
                     this.userID=userID;
+    }
+
+    public Cart(String cartID, String userID) {
+        this.cartID=cartID;
+        this.userID=userID;
     }
 
     public void setCartID(String cartID) {
@@ -53,8 +56,8 @@ public class Cart {
     public String toString() {
         return "Cart{" +
                 "cartID='" + cartID + '\'' +
+                ",userID='" + userID+ '\'' +
                 ", soulID='" + soulID + '\'' +
-                ", userID='" + userID + '\'' +
                 '}';
     }
 }

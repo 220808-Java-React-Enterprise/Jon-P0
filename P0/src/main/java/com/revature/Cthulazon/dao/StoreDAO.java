@@ -16,7 +16,7 @@ public class StoreDAO implements InterfaceDAO<Store> {
         try (Connection con = ConnectionFactory.getInstance().getConnection()) {
             PreparedStatement ps = con.prepareStatement("INSERT INTO stores (storeid,location,soulinventory) values (?, ?, ?)");
             ps.setString(1, obj.getStoreID());
-            ps.setString(2, obj.getLocation());
+            ps.setString(2, obj.getCity());
             ps.setString(3, obj.getSoulInventory());
         } catch (SQLException e) {
             throw new InvalidSQLException("An error occurred when trying to save to the database.");
@@ -46,7 +46,7 @@ public class StoreDAO implements InterfaceDAO<Store> {
                 ResultSet rs = ps.executeQuery();
 
                 while (rs.next()) {
-                    Store store = new Store(rs.getString("storeID"), rs.getString("location"));
+                    Store store = new Store(rs.getString("storeID"), rs.getString("city"));
                     locations.add(store);
                 }
             } catch (SQLException e) {

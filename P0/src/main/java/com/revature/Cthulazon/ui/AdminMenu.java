@@ -75,7 +75,7 @@ public class AdminMenu implements IMenu {
                 location = scan.nextLine();
                 try {
                     Store store = storeService.isValidStore(location);
-                    System.out.println("You are now accessing Store:" + store.getLocation());
+                    System.out.println("You are now accessing Store:" + store.getCity());
                 } catch (InvalidStoreException e) {
                     System.out.println(e.getMessage());
                     break adminBreak;
@@ -90,7 +90,7 @@ public class AdminMenu implements IMenu {
     private void viewLocations() {
         List<Store> activeStores = storeService.getAllLocations();
         for (Store s : activeStores)
-            System.out.println(s.getStoreID() + ": " + s.getLocation() + ": " + s.getSoulInventory());
+            System.out.println(s.getStoreID() + ": " + s.getCity() + ": " + s.getSoulInventory());
     }
 
     private void addStore() {

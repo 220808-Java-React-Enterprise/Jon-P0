@@ -1,22 +1,24 @@
 package com.revature.Cthulazon.ui;
-import com.revature.Cthulazon.dao.CartDAO;
+import com.revature.Cthulazon.dao.OrderDAO;
+import com.revature.Cthulazon.dao.cartDAO;
 import com.revature.Cthulazon.models.*;
 import com.revature.Cthulazon.services.CartService;
+import com.revature.Cthulazon.services.OrderService;
 import com.revature.Cthulazon.utils.Custom_Exceptions.InvalidUserException;
 import com.revature.Cthulazon.dao.StoreDAO;
 import com.revature.Cthulazon.dao.UserDAO;
 import com.revature.Cthulazon.services.UserService;
 import com.revature.Cthulazon.services.StoreService;
 
-import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 public class LoginMenu implements IMenu {
     String userInput = "";
     private final UserService userService;
-
-    public LoginMenu(UserService userService) {
+    private final CartService cartService;
+    public LoginMenu(UserService userService,CartService cartService) {
         this.userService = userService;
+        this.cartService= cartService;
     }
 
     public void start() {
@@ -37,6 +39,8 @@ public class LoginMenu implements IMenu {
                     case "2":
                         User user = signup();
                         userService.register(user);
+                        Cart cart= makeCart(user.getUserID());
+                        cartService.firstTime(cart);
                         break;
                     case "3":
                         System.out.println("Goodbye!");
@@ -66,8 +70,9 @@ public class LoginMenu implements IMenu {
                 password = scan.nextLine();
                     try{
                         User user = userService.login(username, password);
+                        Cart cart=cartService.getById(user.getUserID());
                         if (user.getRole().equals("ADMIN")) new AdminMenu(user, new UserService(new UserDAO()), new StoreService(new StoreDAO())).start();
-                        else new MainMenu(user, new UserService(new UserDAO()), new StoreService(new StoreDAO()),new CartService(new CartDAO())).start();
+                        else new MainMenu(user,cart, new UserService(new UserDAO()), new StoreService(new StoreDAO()),new CartService(new cartDAO()),new OrderService(new OrderDAO())).start();
                         break exit;
                     }catch(InvalidUserException e){
                     System.out.println(e.getMessage());
@@ -201,5 +206,11 @@ public class LoginMenu implements IMenu {
             }
         }
         return user;
+    }
+
+    Cart makeCart(String userID)
+    {
+        Cart cart= new Cart(UUID.randomUUID().toString(), userID);
+        return cart;
     }
 }

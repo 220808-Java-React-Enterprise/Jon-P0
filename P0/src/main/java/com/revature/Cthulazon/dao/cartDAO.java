@@ -9,11 +9,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class CartDAO implements InterfaceDAO<Cart> {
+public class cartDAO implements InterfaceDAO<Cart> {
+    public void firstTime(Cart obj) {
+        try (Connection con = ConnectionFactory.getInstance().getConnection()) {
+            PreparedStatement ps = con.prepareStatement("INSERT INTO carts (cartID,userID) VALUES (?, ?)");
+            ps.setString(1, obj.getCartID());
+            ps.setString(2, obj.getUserID());
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new InvalidSQLException("An error occurred when trying to save Cart to the database.");
+        }
+    }
     @Override
     public void save(Cart obj) {
         try (Connection con = ConnectionFactory.getInstance().getConnection()) {
-            PreparedStatement ps = con.prepareStatement("INSERT INTO carts(cartID,userID,soulID) values (?, ? ,?)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO carts (cartID,userID,soulID) values (?, ? ,?)");
             ps.setString(1, obj.getUserID());
             ps.setString(2, obj.getCartID());
             ps.setString(3, obj.getSoulID());
