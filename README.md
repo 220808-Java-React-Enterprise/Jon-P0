@@ -12,18 +12,23 @@ Purpose: Sell Product(Souls)
 
 *Store(DAO and StoreService made, need to add methods to DAO)(33%)
 *Product(Set up,view store location needs to be added and product listings)(20%)
+*Cart(Made and can store products)
 *Order(to be implemented)(0%)
 
 ### Current work:
-*Select Store Location
-*View Products in Location
+*Cart stores multiple products
+*Add Stores
+*Add Products to Stores
+*Generate Product
 
 ### More Features to implement:
 
--Cart to hold products
+
 -Order to hold details of purchases
 -Sort Orders by cost and date
 -view Customer by admin
 -view Location history by admin
 -Test Cases
+-Select Store Location
+-View Products in Location
 
