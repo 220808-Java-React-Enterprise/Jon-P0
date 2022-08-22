@@ -13,7 +13,11 @@ public class ProductService {
         productDAO.save(product);
     }
 
-
+public void availUpdate(String soulID)
+{
+    Product Temp=getById(soulID);
+    productDAO.update(Temp);
+}
     public Product getById(String soulID){
         Product product=productDAO.getById(soulID);
         return product;

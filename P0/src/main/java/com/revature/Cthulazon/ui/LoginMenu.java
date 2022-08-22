@@ -1,14 +1,8 @@
 package com.revature.Cthulazon.ui;
-import com.revature.Cthulazon.dao.OrderDAO;
-import com.revature.Cthulazon.dao.cartDAO;
+import com.revature.Cthulazon.dao.*;
 import com.revature.Cthulazon.models.*;
-import com.revature.Cthulazon.services.CartService;
-import com.revature.Cthulazon.services.OrderService;
+import com.revature.Cthulazon.services.*;
 import com.revature.Cthulazon.utils.Custom_Exceptions.InvalidUserException;
-import com.revature.Cthulazon.dao.StoreDAO;
-import com.revature.Cthulazon.dao.UserDAO;
-import com.revature.Cthulazon.services.UserService;
-import com.revature.Cthulazon.services.StoreService;
 
 import java.util.Scanner;
 import java.util.UUID;
@@ -72,7 +66,7 @@ public class LoginMenu implements IMenu {
                         User user = userService.login(username, password);
                         Cart cart=cartService.getById(user.getUserID());
                         if (user.getRole().equals("ADMIN")) new AdminMenu(user, new UserService(new UserDAO()), new StoreService(new StoreDAO())).start();
-                        else new MainMenu(user,cart, new UserService(new UserDAO()), new StoreService(new StoreDAO()),new CartService(new cartDAO()),new OrderService(new OrderDAO())).start();
+                        else new MainMenu(user,cart, new UserService(new UserDAO()), new StoreService(new StoreDAO()),new CartService(new cartDAO()),new OrderService(new OrderDAO()), new ProductService(new ProductDAO())).start();
                         break exit;
                     }catch(InvalidUserException e){
                     System.out.println(e.getMessage());

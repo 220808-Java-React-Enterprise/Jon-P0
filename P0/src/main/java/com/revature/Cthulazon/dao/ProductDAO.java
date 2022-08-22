@@ -28,7 +28,14 @@ public class ProductDAO implements InterfaceDAO<Product>{
     }
 
     public void update(Product obj) {
-
+        try (Connection con = ConnectionFactory.getInstance().getConnection()) {
+            PreparedStatement ps = con.prepareStatement("UPDATE products SET avaliable=? Where soulId=?");
+            ps.setBoolean(1,false);
+            ps.setString(2,obj.getSoulID() );
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new InvalidSQLException("An error occurred when trying to save Cart to the database.");
+        }
     }
 
     @Override
@@ -49,7 +56,7 @@ public class ProductDAO implements InterfaceDAO<Product>{
             }
 
         } catch (SQLException e) {
-            throw new InvalidSQLException("An error occurred when trying to access User Cart from the database.");
+            throw new InvalidSQLException("An error occurred when trying to access Product from the database.");
         }
 
         return null;
