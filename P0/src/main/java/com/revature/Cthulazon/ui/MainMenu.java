@@ -20,12 +20,13 @@ import java.util.UUID;
 public class MainMenu implements IMenu {
     private final User user;
     private final Cart userCart;
-    private Store currentstore = new Store("storeId1", "Jacksonville", "1");
+    private Store currentstore;
     private final UserService userService;
     private final StoreService storeService;
     private final CartService cartService;
     private final OrderService orderService;
     private final ProductService productService;
+
 
     public MainMenu(User user, Cart cart, UserService userService, StoreService storeService, CartService cartService, OrderService orderService, ProductService productService) {
         this.user = user;
@@ -50,8 +51,8 @@ public class MainMenu implements IMenu {
                 System.out.println("[2] Select Store!");
                 System.out.println("[3] View Cart!");
                 System.out.println("[4] CheckOut!");
-                System.out.println("[5] AddProduct! ");
-                System.out.println("[6] Exit");
+                System.out.println("[5] Exit! ");
+
                 System.out.print("\nEnter: ");
 
                 switch (scan.nextLine()) {
@@ -82,10 +83,7 @@ public class MainMenu implements IMenu {
                         System.out.println("You now own:" + userCart.getSoulID());
                         break;
                     case "5":
-                        addProduct();
-                        break;
-                    case "6":
-                        break;
+                        break exit;
                     default:
                         System.out.println("\nInvalid input!");
                         break;
@@ -109,10 +107,19 @@ public class MainMenu implements IMenu {
 
     private void chooseStore() {
         Scanner scan = new Scanner(System.in);
+        List<Store> locations = storeService.getAllLocations();
+
+
+        for (int i = 0; i < locations.size(); i++) {
+            System.out.println(" [" + i +"] " + locations.get(i).toString());
+        }
 
         System.out.print("\nSelect a location: ");
-        String storeId = scan.nextLine();
-        this.currentstore = storeService.getById(storeId);
+        int storeNum = scan.nextInt();
+        this.currentstore=locations.get(storeNum);
+this.currentstore.toString();
+
+
 
     }
 
@@ -122,15 +129,22 @@ public class MainMenu implements IMenu {
     }
 
     private void addProduct() {
-        storeService.getAllStoreProducts(currentstore.getStoreID());
+
+        productService.getAllAtStore(currentstore.getStoreID());
+        System.out.println("\nViewing all products at store :"+ currentstore.getStoreID());
+        List<Product> products = productService.getAllAtStore(currentstore.getStoreID());
+        for (int i = 0; i < products.size(); i++) {
+            System.out.println(" [" + i +"] " + products.get(i).toString());
+        }
+
         Scanner scan = new Scanner(System.in);
-        String iWant;
+      int iWant;
 
-        System.out.println("enter an productID!");
-        iWant = scan.nextLine();
+        System.out.println("What do you want to purchase?");
+        iWant = scan.nextInt();
 
-        userCart.setSoulID(iWant);
-        productService.availUpdate(iWant);
+        this.userCart.setSoulID(products.get(iWant).getSoulID());
+        productService.availUpdate(products.get(iWant).getSoulID());
 
 
     }

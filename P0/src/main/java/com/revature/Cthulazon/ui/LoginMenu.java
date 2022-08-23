@@ -49,31 +49,36 @@ public class LoginMenu implements IMenu {
     }
 
     private void login() {
-        String username = "";
-        String password = "";
-        Scanner scan = new Scanner(System.in);
 
-        System.out.println("\nLogging in...");
-        exit:
-        {
-            while (true) {
-                System.out.print("\nEnter username: ");
-                username = scan.nextLine();
+            String username = "";
+            String password = "";
+            Scanner scan = new Scanner(System.in);
 
-                System.out.print("\nEnter password: ");
-                password = scan.nextLine();
-                    try{
+            System.out.println("\nLogging in...");
+            exit:
+            {
+                while (true) {
+                    System.out.print("\nEnter username: ");
+                    username = scan.nextLine();
+
+                    System.out.print("\nEnter password: ");
+                    password = scan.nextLine();
+                    try {
                         User user = userService.login(username, password);
-                        Cart cart=cartService.getById(user.getUserID());
-                        if (user.getRole().equals("ADMIN")) new AdminMenu(user, new UserService(new UserDAO()), new StoreService(new StoreDAO())).start();
-                        else new MainMenu(user,cart, new UserService(new UserDAO()), new StoreService(new StoreDAO()),new CartService(new cartDAO()),new OrderService(new OrderDAO()), new ProductService(new ProductDAO())).start();
+                        Cart cart = cartService.getById(user.getUserID());
+                        if (user.getRole().equals("ADMIN"))
+                            new AdminMenu(user, new UserService(new UserDAO()), new StoreService(new StoreDAO()),new ProductService(new ProductDAO())).start();
+                        else
+                            new MainMenu(user, cart, new UserService(new UserDAO()), new StoreService(new StoreDAO()), new CartService(new cartDAO()), new OrderService(new OrderDAO()), new ProductService(new ProductDAO())).start();
                         break exit;
-                    }catch(InvalidUserException e){
-                    System.out.println(e.getMessage());
+                    } catch (InvalidUserException e) {
+                        System.out.println(e.getMessage());
+                        break exit;
 
+                    }
                 }
             }
-        }
+
     }
     private User signup() {
         String username = "";
@@ -93,20 +98,22 @@ public class LoginMenu implements IMenu {
 
                 //USERNAME INPUT
                 usernameExit:
-                while (true) {
-                    {
-                        System.out.println("Enter a username:");
-                        username = scan.nextLine();
-                        try {
-                            userService.isValidUsername(username);
+                {
+                    while (true) {
+                        {
+                            System.out.println("Enter a username:");
+                            username = scan.nextLine();
+                            try {
+                                userService.isValidUsername(username);
 
-                           userService.isDuplicateUsername(username);
-                            break usernameExit;
-                        } catch (InvalidUserException e) {
-                            System.out.println(e.getMessage());
+                                userService.isDuplicateUsername(username);
+                                break usernameExit;
+                            } catch (InvalidUserException e) {
+                                System.out.println(e.getMessage());
+                            }
                         }
-                    }
 
+                    }
                 }
                 passwordExit:
                 {

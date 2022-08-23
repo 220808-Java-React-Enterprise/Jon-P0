@@ -6,11 +6,16 @@ public class Store {
     String storeID;
     String storeNumber;
     String city;
-    String soulInventory;
+    int soulInventory;
 public Store()
 {}
-
-        public Store(String storeID, String city, String soulInventory) {
+    public Store(String storeID, String storeNumber,String city, int soulInventory) {
+        this.storeID = storeID;
+        this.storeNumber=storeNumber;
+        this.city = city;
+        this.soulInventory = soulInventory;
+    }
+        public Store(String storeID, String city, int soulInventory) {
         this.storeID = storeID;
         this.city = city;
         this.soulInventory = soulInventory;
@@ -25,6 +30,9 @@ public Store()
     this.storeID=storeID;
     }
 
+    public void setStoreNumber(String storeNumber) {
+        this.storeNumber = storeNumber;
+    }
 
     public void setStoreID(String storeID) {
         this.storeID = storeID;
@@ -34,7 +42,7 @@ public Store()
         this.city = city;
     }
 
-    public void setSoulInventory(String soulInventory) {
+    public void setSoulInventory(int soulInventory) {
         this.soulInventory = soulInventory;
     }
 
@@ -42,11 +50,25 @@ public Store()
         return storeID;
     }
 
+    public String getStoreNumber() {
+        return storeNumber;
+    }
+
     public String getCity() {
         return city;
     }
 
-    public String getSoulInventory() {
+    public int getSoulInventory() {
         return soulInventory;
+    }
+
+    @Override
+    public String toString() {
+        return "Store{" +
+                "storeID='" + storeID + '\'' +
+                ", storeNumber='" + storeNumber + '\'' +
+                ", city='" + city + '\'' +
+                ", soulInventory='" + soulInventory + '\'' +
+                '}';
     }
 }

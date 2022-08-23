@@ -15,7 +15,7 @@ public class UserDAO implements InterfaceDAO<User> {
     @Override
     public void save(User obj) {
         try (Connection con = ConnectionFactory.getInstance().getConnection()) {
-            PreparedStatement ps = con.prepareStatement("INSERT INTO users (userid,username,password,ROLE,emailaddress,firstname,lastname) values (?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO users (userid,username,password,ROLE,emailaddress,firstname,lastname) values (?, ?, ?, ?, ?, ?,?)");
             ps.setString(1, obj.getUserID());
             ps.setString(2, obj.getUserName());
             ps.setString(3, obj.getPassword());
@@ -66,7 +66,7 @@ public class UserDAO implements InterfaceDAO<User> {
             if (rs.next()) return rs.getString("username");
 
         } catch (SQLException e) {
-            throw new InvalidSQLException("An error occurred when tyring to save to the database.");
+            throw new InvalidSQLException("An error occurred when trying to save to the database.");
         }
 
         return null;
