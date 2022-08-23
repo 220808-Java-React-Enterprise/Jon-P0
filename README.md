@@ -9,17 +9,13 @@ Purpose: Sell Product(Souls)
 -some testing
 *SignUp(Works but needs some guard statements)(99%)
  -samepass verification, some testing
-
-*Store(DAO and StoreService made, need to add methods to DAO)(33%)
+*Store(Only Needs to Test)(85%)
 *Product(Set up,view store location needs to be added and product listings)(20%)
 *Cart(Made and can store products)
-*Order(to be implemented)(0%)
+*Order(Order can be made)(10%)
 
 ### Current work:
 *Cart stores multiple products
-*Add Stores
-*Add Products to Stores
-*Generate Product
 
 ### More Features to implement:
 
@@ -29,6 +25,5 @@ Purpose: Sell Product(Souls)
 -view Customer by admin
 -view Location history by admin
 -Test Cases
--Select Store Location
 -View Products in Location
 
