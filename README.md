@@ -27,3 +27,9 @@ Purpose: Sell Product(Souls)
 -Test Cases
 -View Products in Location
 
+#Features Implemented
+*Add User
+*Add Store
+*Add Product to Store
+*Select Location
+*View Stock At Location
