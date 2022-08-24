@@ -14,6 +14,7 @@ public class OrderDAO implements InterfaceDAO<Orders> {
         @Override
         public void save(Orders obj) {
             try (Connection con = ConnectionFactory.getInstance().getConnection()) {
+<<<<<<< HEAD
 <<<<<<< Updated upstream
                 PreparedStatement ps = con.prepareStatement("INSERT INTO orders(userID,storeID,date,total) values (?, ? ,?,?)");
                 ps.setString(1, obj.getOrderID());
@@ -28,6 +29,14 @@ public class OrderDAO implements InterfaceDAO<Orders> {
                 ps.setDate(4, (Date) obj.getDate());
                 ps.setInt(5,  obj.getAmount());
 >>>>>>> Stashed changes
+=======
+                PreparedStatement ps = con.prepareStatement("INSERT INTO orders(orderID,userID,storeID,date,total) values (?, ?,? ,?,?)");
+                ps.setString(1, obj.getOrderID());
+                ps.setString(2, obj.getUserID());
+                ps.setString(3,obj.getStoreID());
+                ps.setString(4, obj.getDate());
+                ps.setInt(5,  obj.getAmount());
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
 
                 ps.executeUpdate();
             } catch (SQLException e) {
@@ -54,11 +63,15 @@ public class OrderDAO implements InterfaceDAO<Orders> {
                 ResultSet rs = ps.executeQuery();
 
                 if (rs.next()) {
+<<<<<<< HEAD
 <<<<<<< Updated upstream
                     return new Orders(rs.getString("OrderID"), rs.getString("cartID"), rs.getString("userID"),rs.getString("storeID"),rs.getString("Date"),rs.getInt("Amount"));
 =======
                     return new Orders(rs.getString("OrderID"), rs.getString("userID"),rs.getString("storeID"),rs.getDate("Date"),rs.getInt("Amount"));
 >>>>>>> Stashed changes
+=======
+                    return new Orders(rs.getString("OrderID"), rs.getString("userID"),rs.getString("storeID"),rs.getString("Date"),rs.getInt("Amount"));
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
                 }
 
             } catch (SQLException e) {

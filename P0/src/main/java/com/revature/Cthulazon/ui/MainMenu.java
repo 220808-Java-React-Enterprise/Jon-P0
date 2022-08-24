@@ -1,18 +1,24 @@
 package com.revature.Cthulazon.ui;
+
 import com.revature.Cthulazon.models.Cart;
 import com.revature.Cthulazon.models.Store;
 import com.revature.Cthulazon.models.User;
 import com.revature.Cthulazon.models.Orders;
+import com.revature.Cthulazon.models.Product;
 import com.revature.Cthulazon.services.CartService;
 import com.revature.Cthulazon.services.UserService;
 import com.revature.Cthulazon.services.StoreService;
 import com.revature.Cthulazon.services.OrderService;
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 import com.revature.Cthulazon.services.ProductService;
 import com.revature.Cthulazon.utils.Custom_Exceptions.InvalidUserException;
 import com.revature.Cthulazon.utils.Custom_Exceptions.InvalidUserSelection;
 >>>>>>> Stashed changes
+=======
+import com.revature.Cthulazon.services.ProductService;
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -20,21 +26,26 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
+
 public class MainMenu implements IMenu {
     private final User user;
     private final Cart userCart;
-    private Store currentstore=new Store("storeId1","Jacksonville","1");
+    private Store currentstore;
     private final UserService userService;
     private final StoreService storeService;
     private final CartService cartService;
     private final OrderService orderService;
-    public MainMenu(User user, Cart cart, UserService userService, StoreService storeService, CartService cartService, OrderService orderService) {
+    private final ProductService productService;
+
+
+    public MainMenu(User user, Cart cart, UserService userService, StoreService storeService, CartService cartService, OrderService orderService, ProductService productService) {
         this.user = user;
-        this.userCart=cart;
+        this.userCart = cart;
         this.userService = userService;
-        this.storeService=storeService;
-        this.cartService=cartService;
-        this.orderService=orderService;
+        this.storeService = storeService;
+        this.cartService = cartService;
+        this.orderService = orderService;
+        this.productService = productService;
 
     }
 
@@ -51,6 +62,7 @@ public class MainMenu implements IMenu {
                 System.out.println("[3] View Cart!");
 <<<<<<< Updated upstream
                 System.out.println("[4] CheckOut!");
+<<<<<<< HEAD
                 System.out.println("[5] AddProduct! ");
                 System.out.println("[6] Exit");
 =======
@@ -60,6 +72,10 @@ public class MainMenu implements IMenu {
                 System.out.println("[7] Exit!");
 
 >>>>>>> Stashed changes
+=======
+                System.out.println("[5] Exit! ");
+
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
                 System.out.print("\nEnter: ");
 
                 switch (scan.nextLine()) {
@@ -67,8 +83,10 @@ public class MainMenu implements IMenu {
                         viewLocations();
                         break;
                     case "2":
+                        chooseStore();
                         System.out.println("You are now viewing");
-
+                        System.out.println(currentstore.getStoreID() + " " + currentstore.getCity());
+                        break;
                     case "3":
                         System.out.println("Printing Your Cart...");
                         System.out.println("items currently in your cart");
@@ -82,16 +100,21 @@ public class MainMenu implements IMenu {
                     case "5":
                         System.out.println("CHECKOUT");
                         System.out.println("-------------------------------------------------------------------------------");
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+                        addProduct();
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
                         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
                         LocalDateTime dateNow = LocalDateTime.now();
-                        String date= String.valueOf(dateNow);
-                        Orders order = new Orders(UUID.randomUUID().toString(), userCart.getCartID(), user.getUserID(), currentstore.getStoreID(), date, 1);
-                        System.out.println(order);
-                        System.out.println("You now own:" +userCart.getSoulID());
-
-                        break exit;
+                        String date = String.valueOf(dateNow);
+                        Orders order = new Orders(UUID.randomUUID().toString(), user.getUserID(), currentstore.getStoreID(), date, 1);
+                        orderService.saveOrder(order);
+                        System.out.println(order.toString());
+                        System.out.println("You now own:" + userCart.getSoulID());
+                        break;
                     case "5":
+<<<<<<< HEAD
                         addProduct();
                         break exit;
                     case "6":
@@ -103,6 +126,8 @@ public class MainMenu implements IMenu {
                         break;
                     case "7":
 >>>>>>> Stashed changes
+=======
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
                         break exit;
                     default:
                         System.out.println("\nInvalid input!");
@@ -115,30 +140,40 @@ public class MainMenu implements IMenu {
     private void viewLocations() {
         Scanner scan = new Scanner(System.in);
 
-        exit:
-        {
-            while (true) {
-                System.out.println("\nViewing all locations...");
-                List<Store> locations = storeService.getAllLocations();
-                for (int i = 0; i < locations.size(); i++) {
-                    System.out.println("[" + locations.get(i).getStoreID() + "] " + locations.get(i).getCity());
-                }
+        System.out.println("\nViewing all locations...");
+        List<Store> locations = storeService.getAllLocations();
+        for (int i = 0; i < locations.size(); i++) {
+            System.out.println("[" + locations.get(i).getStoreID() + "] " + locations.get(i).getCity());
+        }
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
                 System.out.print("\nSelect a location: ");
                 int index = scan.nextInt() - 1;
+=======
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
 
+    }
 
+<<<<<<< HEAD
             }
 =======
     private void chooseStore()  {
+=======
+
+    private void chooseStore() {
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
         Scanner scan = new Scanner(System.in);
         List<Store> locations = storeService.getAllLocations();
 
 
         for (int i = 0; i < locations.size(); i++) {
+<<<<<<< HEAD
             System.out.println(" [" + i + "] " + locations.get(i).toString());
 >>>>>>> Stashed changes
+=======
+            System.out.println(" [" + i +"] " + locations.get(i).toString());
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
         }
         storeChooseExit:
         {
@@ -151,7 +186,16 @@ public class MainMenu implements IMenu {
 =======
                 this.currentstore = locations.get(storeNum);
 
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+        System.out.print("\nSelect a location: ");
+        int storeNum = scan.nextInt();
+        this.currentstore=locations.get(storeNum);
+this.currentstore.toString();
+
+
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
 
                     this.currentstore.toString();
                 } catch (InvalidUserSelection e) {
@@ -163,15 +207,21 @@ public class MainMenu implements IMenu {
     }
         private void viewCart () {
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     private void viewCart(){
         Cart userCart= cartService.getById(user.getUserID());
 =======
         Cart userCart = cartService.getById(user.getUserID());
 >>>>>>> Stashed changes
+=======
+    private void viewCart() {
+        Cart userCart = cartService.getById(user.getUserID());
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
         System.out.println(userCart.toString());
         }
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
    private void addProduct(){
     Scanner scan=new Scanner(System.in);
@@ -215,8 +265,26 @@ public class MainMenu implements IMenu {
 
             }
 >>>>>>> Stashed changes
+=======
+    private void addProduct() {
 
-        userCart.setSoulID(iWant);
+        productService.getAllAtStore(currentstore.getStoreID());
+        System.out.println("\nViewing all products at store :"+ currentstore.getStoreID());
+        List<Product> products = productService.getAllAtStore(currentstore.getStoreID());
+        for (int i = 0; i < products.size(); i++) {
+            System.out.println(" [" + i +"] " + products.get(i).toString());
+        }
+
+        Scanner scan = new Scanner(System.in);
+      int iWant;
+
+        System.out.println("What do you want to purchase?");
+        iWant = scan.nextInt();
+
+        this.userCart.setSoulID(products.get(iWant).getSoulID());
+        productService.availUpdate(products.get(iWant).getSoulID());
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
+
 
 private void viewOrderHistory() {
 

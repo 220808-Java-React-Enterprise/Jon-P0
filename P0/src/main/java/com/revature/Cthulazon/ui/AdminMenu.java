@@ -1,26 +1,31 @@
 package com.revature.Cthulazon.ui;
 
+import com.revature.Cthulazon.models.Product;
 import com.revature.Cthulazon.models.Store;
 import com.revature.Cthulazon.models.User;
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 import com.revature.Cthulazon.models.Orders;
 import com.revature.Cthulazon.services.OrderService;
 import com.revature.Cthulazon.services.ProductService;
 >>>>>>> Stashed changes
+=======
+import com.revature.Cthulazon.services.ProductService;
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
 import com.revature.Cthulazon.services.UserService;
 import com.revature.Cthulazon.services.StoreService;
+import com.revature.Cthulazon.utils.Custom_Exceptions.InvalidSQLException;
 import com.revature.Cthulazon.utils.Custom_Exceptions.InvalidStoreException;
-import com.revature.Cthulazon.utils.Custom_Exceptions.InvalidUserException;
 
 
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class AdminMenu implements IMenu {
     private final User user;
     private final UserService userService;
     private final StoreService storeService;
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 
     public AdminMenu(User user, UserService userService, StoreService storeService) {
@@ -39,6 +44,14 @@ public class AdminMenu implements IMenu {
         this.productService = productService;
         this.orderService=orderService;
 >>>>>>> Stashed changes
+=======
+private final ProductService productService;
+    public AdminMenu(User user, UserService userService, StoreService storeService,ProductService productService) {
+        this.user = user;
+        this.userService = userService;
+        this.storeService = storeService;
+        this.productService=productService;
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
     }
 
     //TODO
@@ -94,29 +107,6 @@ public class AdminMenu implements IMenu {
     }
 
 
-    private void addInventory() {
-        String location = "";
-        int increaseTheInventory;
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Which Store number do you want to add to?");
-        adminBreak:
-        {
-            while (true) {
-                location = scan.nextLine();
-                try {
-                    Store store = storeService.isValidStore(location);
-                    System.out.println("You are now accessing Store:" + store.getCity());
-                } catch (InvalidStoreException e) {
-                    System.out.println(e.getMessage());
-                    break adminBreak;
-                }
-                System.out.println("By How Much:");
-                int increaseNum = scan.nextInt();
-            }
-
-        }
-    }
-
     private void viewLocations() {
         List<Store> activeStores = storeService.getAllLocations();
         for (Store s : activeStores)
@@ -124,37 +114,54 @@ public class AdminMenu implements IMenu {
     }
 
     private void addStore() {
+<<<<<<< HEAD
 <<<<<<< Updated upstream
         String storeID = "store";
 =======
         String city;
         String storeNum;
 >>>>>>> Stashed changes
+=======
+        String city;
+        String storeNum = "";
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
         int num = 0;
-        String location = "";
         int soulInventory = 0;
 
 
         Scanner scan = new Scanner(System.in);
-
+        Scanner next = new Scanner(System.in);
         System.out.println("Creating Store...");
 
         storeCreationExit:
         {
             while (true) {
 
+                storeNumberExit:
+                {
+                    while (true) {
+                        {
 
-                        System.out.println("listing Stores...");
-                        viewLocations();
-                        System.out.println("Enter a number that is not taken between 0 to 999:");
-                        num = scan.nextInt();
-                        storeID = storeID + String.valueOf(num);
+                            System.out.println("Enter a number that is not taken between 0 to 999:");
+                            num = scan.nextInt();
+                            storeNum = "store" + String.valueOf(num);
 
+                            try {
+                                storeService.isStoreTaken(storeNum);
+                                break storeNumberExit;
+                            } catch (InvalidSQLException e) {
+                                System.out.println(e.getMessage());
 
+                            }
+                        }
 
+                    }
                 }
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
                 cityChosenExit:
                 {
                     while (true) {
@@ -185,7 +192,11 @@ public class AdminMenu implements IMenu {
 
     }
 
+<<<<<<< HEAD
     private void addInventory() throws IndexOutOfBoundsException {
+=======
+    private void addInventory() {
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
         int increaseTheInventory;
         Scanner scan = new Scanner(System.in);
         adminBreak:
@@ -194,6 +205,7 @@ public class AdminMenu implements IMenu {
             List<Store> store = storeService.getAllLocations();
             for (int i = 0; i < store.size(); i++) {
                 System.out.println(" [" + i + "] " + store.get(i).toString());
+<<<<<<< HEAD
 >>>>>>> Stashed changes
             }
 
@@ -290,3 +302,61 @@ public class AdminMenu implements IMenu {
     }
 }
 >>>>>>> Stashed changes
+=======
+            }
+            int iWant;
+
+            System.out.println("What store do you want to access?");
+            iWant = scan.nextInt();
+            Store storefront=store.get(iWant);
+
+            System.out.println("By How Much:");
+            int increaseNum = scan.nextInt();
+            addProduct(increaseNum,storefront);
+        }
+
+    }
+
+    private void addProduct(int number, Store store) {
+        char[] ch={'A','B','C','D','F'};
+        Random rand=new Random();
+        String sanityGrade = null;
+        int costToBuy=0;
+       switch(rand.nextInt(4)+1) {
+
+           case 1 :
+               sanityGrade = "A";
+               costToBuy=1000;
+               break;
+           case 2:
+               sanityGrade = "B";
+               costToBuy=750;
+               break;
+           case 3:
+               sanityGrade = "C";
+               costToBuy=500;
+               break;
+           case 4:
+               sanityGrade = "D'";
+               costToBuy=100;
+               break;
+           case 5:
+               sanityGrade = "F";
+               costToBuy=50;
+               break;
+           default:
+               System.out.println("please enter a number 1 to 5");
+               break;
+       }
+
+    for(int i=0;i<number;i++)
+    {
+        Product product = new Product(UUID.randomUUID().toString(),sanityGrade,costToBuy,true,store.getStoreID());
+        productService.register(product);
+    }
+
+}
+
+
+}
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093

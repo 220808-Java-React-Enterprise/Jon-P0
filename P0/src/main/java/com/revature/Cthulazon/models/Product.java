@@ -7,7 +7,7 @@ public class Product {
     int costToBuy;
     boolean avaliable;
 
-    public Product(String soulID, String sanityGrade, String storeID, int costToBuy, boolean avaliable) {
+    public Product(String soulID, String sanityGrade, int costToBuy, boolean avaliable,String storeID) {
         this.soulID = soulID;
         this.sanityGrade = sanityGrade;
         this.costToBuy = costToBuy;
@@ -53,5 +53,16 @@ public class Product {
 
     public boolean isAvaliable() {
         return avaliable;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "soulID='" + soulID + '\'' +
+                ", sanityGrade='" + sanityGrade + '\'' +
+                ", storeID='" + storeID + '\'' +
+                ", costToBuy=" + costToBuy +
+                ", avaliable=" + avaliable +
+                '}';
     }
 }

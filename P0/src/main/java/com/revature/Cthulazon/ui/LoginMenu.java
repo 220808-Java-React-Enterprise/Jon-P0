@@ -1,14 +1,8 @@
 package com.revature.Cthulazon.ui;
-import com.revature.Cthulazon.dao.OrderDAO;
-import com.revature.Cthulazon.dao.cartDAO;
+import com.revature.Cthulazon.dao.*;
 import com.revature.Cthulazon.models.*;
-import com.revature.Cthulazon.services.CartService;
-import com.revature.Cthulazon.services.OrderService;
+import com.revature.Cthulazon.services.*;
 import com.revature.Cthulazon.utils.Custom_Exceptions.InvalidUserException;
-import com.revature.Cthulazon.dao.StoreDAO;
-import com.revature.Cthulazon.dao.UserDAO;
-import com.revature.Cthulazon.services.UserService;
-import com.revature.Cthulazon.services.StoreService;
 
 import java.util.Scanner;
 import java.util.UUID;
@@ -55,21 +49,23 @@ public class LoginMenu implements IMenu {
     }
 
     private void login() {
-        String username = "";
-        String password = "";
-        Scanner scan = new Scanner(System.in);
 
-        System.out.println("\nLogging in...");
-        exit:
-        {
-            while (true) {
-                System.out.print("\nEnter username: ");
-                username = scan.nextLine();
+            String username = "";
+            String password = "";
+            Scanner scan = new Scanner(System.in);
 
-                System.out.print("\nEnter password: ");
-                password = scan.nextLine();
-                    try{
+            System.out.println("\nLogging in...");
+            exit:
+            {
+                while (true) {
+                    System.out.print("\nEnter username: ");
+                    username = scan.nextLine();
+
+                    System.out.print("\nEnter password: ");
+                    password = scan.nextLine();
+                    try {
                         User user = userService.login(username, password);
+<<<<<<< HEAD
 <<<<<<< Updated upstream
                         Cart cart=cartService.getById(user.getUserID());
                         if (user.getRole().equals("ADMIN")) new AdminMenu(user, new UserService(new UserDAO()), new StoreService(new StoreDAO())).start();
@@ -84,13 +80,22 @@ public class LoginMenu implements IMenu {
                     } catch (InvalidUserException e) {
                         System.out.println(e.getMessage());
 >>>>>>> Stashed changes
+=======
+                        Cart cart = cartService.getById(user.getUserID());
+                        if (user.getRole().equals("ADMIN"))
+                            new AdminMenu(user, new UserService(new UserDAO()), new StoreService(new StoreDAO()),new ProductService(new ProductDAO())).start();
+                        else
+                            new MainMenu(user, cart, new UserService(new UserDAO()), new StoreService(new StoreDAO()), new CartService(new cartDAO()), new OrderService(new OrderDAO()), new ProductService(new ProductDAO())).start();
                         break exit;
-                    }catch(InvalidUserException e){
-                    System.out.println(e.getMessage());
+                    } catch (InvalidUserException e) {
+                        System.out.println(e.getMessage());
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
+                        break exit;
 
+                    }
                 }
             }
-        }
+
     }
     private User signup() {
         String username = "";
@@ -110,20 +115,22 @@ public class LoginMenu implements IMenu {
 
                 //USERNAME INPUT
                 usernameExit:
-                while (true) {
-                    {
-                        System.out.println("Enter a username:");
-                        username = scan.nextLine();
-                        try {
-                            userService.isValidUsername(username);
+                {
+                    while (true) {
+                        {
+                            System.out.println("Enter a username:");
+                            username = scan.nextLine();
+                            try {
+                                userService.isValidUsername(username);
 
-                           userService.isDuplicateUsername(username);
-                            break usernameExit;
-                        } catch (InvalidUserException e) {
-                            System.out.println(e.getMessage());
+                                userService.isDuplicateUsername(username);
+                                break usernameExit;
+                            } catch (InvalidUserException e) {
+                                System.out.println(e.getMessage());
+                            }
                         }
-                    }
 
+                    }
                 }
                 passwordExit:
                 {
