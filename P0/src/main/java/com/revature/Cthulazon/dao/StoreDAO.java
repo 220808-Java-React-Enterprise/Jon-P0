@@ -37,32 +37,6 @@ public class StoreDAO implements InterfaceDAO<Store> {
         }
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> test-branch
-<<<<<<< Updated upstream
-        @Override
-        public void delete (String id){
-=======
-    public void updateInput(String obj,int count) {
-        try (Connection con = ConnectionFactory.getInstance().getConnection()) {
-            PreparedStatement ps = con.prepareStatement("Update stores set soulInventory=soulInventory+"+count+" where storeID=?");
-            ps.setString(1, obj);
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            throw new InvalidSQLException("An error occurred when trying to save to the database.");
-        }
-    }
-
->>>>>>> Stashed changes
-<<<<<<< HEAD
->>>>>>> test-branch
-=======
-=======
->>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
->>>>>>> test-branch
 
     @Override
     public void delete(String id) {
@@ -78,40 +52,9 @@ public class StoreDAO implements InterfaceDAO<Store> {
     public List<Store> getAll() {
         List<Store> locations = new ArrayList<>();
 
-<<<<<<< HEAD
-<<<<<<< HEAD
         try (Connection con = ConnectionFactory.getInstance().getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM stores");
             ResultSet rs = ps.executeQuery();
-=======
-=======
->>>>>>> test-branch
-<<<<<<< Updated upstream
-                while (rs.next()) {
-                    Store store = new Store(rs.getString("storeID"), rs.getString("city"));
-                    locations.add(store);
-                }
-            } catch (SQLException e) {
-                throw new InvalidSQLException("An error occurred when trying to save to the database.");
-=======
-        try (Connection con = ConnectionFactory.getInstance().getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM stores");
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                Store store = new Store(rs.getString("storeID"),rs.getString("storeNumber"),rs.getString("city"),rs.getInt("soulInventory"));
-                locations.add(store);
->>>>>>> Stashed changes
-            }
-<<<<<<< HEAD
->>>>>>> test-branch
-=======
-=======
-        try (Connection con = ConnectionFactory.getInstance().getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM stores");
-            ResultSet rs = ps.executeQuery();
->>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
->>>>>>> test-branch
 
             while (rs.next()) {
                 Store store = new Store(rs.getString("storeID"), rs.getString("city"));

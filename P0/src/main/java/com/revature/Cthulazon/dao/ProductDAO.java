@@ -65,21 +65,6 @@ public class ProductDAO implements InterfaceDAO<Product>{
     }
 
     @Override
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> test-branch
-<<<<<<< Updated upstream
-    public List<Product> getAll () {
-        return null;
-=======
-<<<<<<< HEAD
->>>>>>> test-branch
-=======
-=======
->>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
->>>>>>> test-branch
     public List<Product> getAll()   {
         List<Product> listOfProduct = null;
         try (Connection con = ConnectionFactory.getInstance().getConnection()) {
@@ -97,16 +82,6 @@ public class ProductDAO implements InterfaceDAO<Product>{
     }
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> test-branch
-=======
-
-=======
->>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
->>>>>>> test-branch
     public List<Product> getAll(String storeId)   {
         List<Product> listOfProduct=new ArrayList();
         try (Connection con = ConnectionFactory.getInstance().getConnection()) {
@@ -123,37 +98,7 @@ public class ProductDAO implements InterfaceDAO<Product>{
         }
 
         return listOfProduct;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
->>>>>>> test-branch
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
->>>>>>> test-branch
     }
-    public List<Product> getAllAvailable(String storeId)   {
-        List<Product> listOfProduct=new ArrayList();
-        try (Connection con = ConnectionFactory.getInstance().getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM products WHERE storeid=? AND avaliable=?");
-            ps.setString(1, storeId);
-            ps.setBoolean(2,true);
-            ResultSet rs = ps.executeQuery();
-
-            while(rs.next()) {
-                listOfProduct.add(new Product(rs.getString("soulID"), rs.getString("SanityGrade"),  rs.getInt("costToBuy"), rs.getBoolean("avaliable"),rs.getString("StoreID")));
-
-            }
-        }catch (SQLException e) {
-            throw new InvalidSQLException("An error occurred when trying to save Cart to the database.");
-        }
-
-        return listOfProduct;
-    }
-
-
 }
 
 

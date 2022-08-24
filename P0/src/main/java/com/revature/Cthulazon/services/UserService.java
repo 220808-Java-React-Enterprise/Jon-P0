@@ -50,9 +50,4 @@ public void isDuplicateUsername(String userName)
 
 }
 
-public String getName(String name)
-{
-    return userDAO.getUsername(name);
-}
-
 }

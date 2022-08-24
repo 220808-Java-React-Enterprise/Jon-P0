@@ -9,29 +9,13 @@ public class Orders {
     String orderID;
     String userID;
     String storeID;
-    Date date;
+    String date;
     int amount;
 
     public Orders() {
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     public Orders(String orderID, String userID, String storeID, String date, int amount) {
-=======
-=======
->>>>>>> test-branch
-<<<<<<< Updated upstream
-    public Orders(String orderID, String cartID, String userID, String storeID, String date, int amount){}
-=======
-    public Orders(String orderID, String userID, String storeID, Date date, int amount) {
-<<<<<<< HEAD
->>>>>>> test-branch
-=======
-=======
-    public Orders(String orderID, String userID, String storeID, String date, int amount) {
->>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
->>>>>>> test-branch
         this.orderID = orderID;
         this.userID = userID;
         this.storeID = storeID;
@@ -39,16 +23,6 @@ public class Orders {
         this.amount = amount;
 
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
->>>>>>> test-branch
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
->>>>>>> test-branch
 
 
     public void setOrderID(String orderID) {
@@ -85,7 +59,7 @@ public class Orders {
         return storeID;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
