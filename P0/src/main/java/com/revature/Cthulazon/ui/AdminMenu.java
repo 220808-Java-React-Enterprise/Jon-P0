@@ -4,14 +4,23 @@ import com.revature.Cthulazon.models.Product;
 import com.revature.Cthulazon.models.Store;
 import com.revature.Cthulazon.models.User;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import com.revature.Cthulazon.services.ProductService;
 =======
+=======
+>>>>>>> test-branch
 <<<<<<< Updated upstream
 =======
 import com.revature.Cthulazon.models.Orders;
 import com.revature.Cthulazon.services.OrderService;
 import com.revature.Cthulazon.services.ProductService;
 >>>>>>> Stashed changes
+<<<<<<< HEAD
+>>>>>>> test-branch
+=======
+=======
+import com.revature.Cthulazon.services.ProductService;
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
 >>>>>>> test-branch
 import com.revature.Cthulazon.services.UserService;
 import com.revature.Cthulazon.services.StoreService;
@@ -26,6 +35,7 @@ public class AdminMenu implements IMenu {
     private final UserService userService;
     private final StoreService storeService;
 <<<<<<< HEAD
+<<<<<<< HEAD
 private final ProductService productService;
     public AdminMenu(User user, UserService userService, StoreService storeService,ProductService productService) {
         this.user = user;
@@ -33,6 +43,8 @@ private final ProductService productService;
         this.storeService = storeService;
         this.productService=productService;
 =======
+=======
+>>>>>>> test-branch
 <<<<<<< Updated upstream
 
     public AdminMenu(User user, UserService userService, StoreService storeService) {
@@ -51,6 +63,17 @@ private final ProductService productService;
         this.productService = productService;
         this.orderService=orderService;
 >>>>>>> Stashed changes
+<<<<<<< HEAD
+>>>>>>> test-branch
+=======
+=======
+private final ProductService productService;
+    public AdminMenu(User user, UserService userService, StoreService storeService,ProductService productService) {
+        this.user = user;
+        this.userService = userService;
+        this.storeService = storeService;
+        this.productService=productService;
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
 >>>>>>> test-branch
     }
 
@@ -115,15 +138,25 @@ private final ProductService productService;
 
     private void addStore() {
 <<<<<<< HEAD
+<<<<<<< HEAD
         String city;
         String storeNum = "";
 =======
+=======
+>>>>>>> test-branch
 <<<<<<< Updated upstream
         String storeID = "store";
 =======
         String city;
         String storeNum;
 >>>>>>> Stashed changes
+<<<<<<< HEAD
+>>>>>>> test-branch
+=======
+=======
+        String city;
+        String storeNum = "";
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
 >>>>>>> test-branch
         int num = 0;
         int soulInventory = 0;
@@ -158,9 +191,16 @@ private final ProductService productService;
                     }
                 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< Updated upstream
 =======
+>>>>>>> test-branch
+=======
+<<<<<<< Updated upstream
+=======
+=======
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
 >>>>>>> test-branch
                 cityChosenExit:
                 {
@@ -193,9 +233,16 @@ private final ProductService productService;
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     private void addInventory() {
 =======
     private void addInventory() throws IndexOutOfBoundsException {
+>>>>>>> test-branch
+=======
+    private void addInventory() throws IndexOutOfBoundsException {
+=======
+    private void addInventory() {
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
 >>>>>>> test-branch
         int increaseTheInventory;
         Scanner scan = new Scanner(System.in);
@@ -205,6 +252,7 @@ private final ProductService productService;
             List<Store> store = storeService.getAllLocations();
             for (int i = 0; i < store.size(); i++) {
                 System.out.println(" [" + i + "] " + store.get(i).toString());
+<<<<<<< HEAD
 <<<<<<< HEAD
             }
             int iWant;
@@ -263,6 +311,8 @@ private final ProductService productService;
 
 }
 =======
+=======
+>>>>>>> test-branch
 >>>>>>> Stashed changes
             }
 
@@ -359,4 +409,65 @@ private final ProductService productService;
     }
 }
 >>>>>>> Stashed changes
+<<<<<<< HEAD
+>>>>>>> test-branch
+=======
+=======
+            }
+            int iWant;
+
+            System.out.println("What store do you want to access?");
+            iWant = scan.nextInt();
+            Store storefront=store.get(iWant);
+
+            System.out.println("By How Much:");
+            int increaseNum = scan.nextInt();
+            addProduct(increaseNum,storefront);
+        }
+
+    }
+
+    private void addProduct(int number, Store store) {
+        char[] ch={'A','B','C','D','F'};
+        Random rand=new Random();
+        String sanityGrade = null;
+        int costToBuy=0;
+       switch(rand.nextInt(4)+1) {
+
+           case 1 :
+               sanityGrade = "A";
+               costToBuy=1000;
+               break;
+           case 2:
+               sanityGrade = "B";
+               costToBuy=750;
+               break;
+           case 3:
+               sanityGrade = "C";
+               costToBuy=500;
+               break;
+           case 4:
+               sanityGrade = "D'";
+               costToBuy=100;
+               break;
+           case 5:
+               sanityGrade = "F";
+               costToBuy=50;
+               break;
+           default:
+               System.out.println("please enter a number 1 to 5");
+               break;
+       }
+
+    for(int i=0;i<number;i++)
+    {
+        Product product = new Product(UUID.randomUUID().toString(),sanityGrade,costToBuy,true,store.getStoreID());
+        productService.register(product);
+    }
+
+}
+
+
+}
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
 >>>>>>> test-branch

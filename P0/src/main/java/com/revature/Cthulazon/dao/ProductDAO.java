@@ -66,11 +66,19 @@ public class ProductDAO implements InterfaceDAO<Product>{
 
     @Override
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> test-branch
 <<<<<<< Updated upstream
     public List<Product> getAll () {
         return null;
 =======
+<<<<<<< HEAD
+>>>>>>> test-branch
+=======
+=======
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
 >>>>>>> test-branch
     public List<Product> getAll()   {
         List<Product> listOfProduct = null;
@@ -90,8 +98,14 @@ public class ProductDAO implements InterfaceDAO<Product>{
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
+>>>>>>> test-branch
+=======
+
+=======
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
 >>>>>>> test-branch
     public List<Product> getAll(String storeId)   {
         List<Product> listOfProduct=new ArrayList();
@@ -110,8 +124,14 @@ public class ProductDAO implements InterfaceDAO<Product>{
 
         return listOfProduct;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> Stashed changes
+>>>>>>> test-branch
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
 >>>>>>> test-branch
     }
     public List<Product> getAllAvailable(String storeId)   {

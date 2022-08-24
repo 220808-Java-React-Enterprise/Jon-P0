@@ -10,14 +10,23 @@ import com.revature.Cthulazon.services.UserService;
 import com.revature.Cthulazon.services.StoreService;
 import com.revature.Cthulazon.services.OrderService;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import com.revature.Cthulazon.services.ProductService;
 =======
+=======
+>>>>>>> test-branch
 <<<<<<< Updated upstream
 =======
 import com.revature.Cthulazon.services.ProductService;
 import com.revature.Cthulazon.utils.Custom_Exceptions.InvalidUserException;
 import com.revature.Cthulazon.utils.Custom_Exceptions.InvalidUserSelection;
 >>>>>>> Stashed changes
+<<<<<<< HEAD
+>>>>>>> test-branch
+=======
+=======
+import com.revature.Cthulazon.services.ProductService;
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
 >>>>>>> test-branch
 
 import java.time.LocalDateTime;
@@ -63,9 +72,12 @@ public class MainMenu implements IMenu {
 <<<<<<< Updated upstream
                 System.out.println("[4] CheckOut!");
 <<<<<<< HEAD
+<<<<<<< HEAD
                 System.out.println("[5] Exit! ");
 
 =======
+=======
+>>>>>>> test-branch
                 System.out.println("[5] AddProduct! ");
                 System.out.println("[6] Exit");
 =======
@@ -75,6 +87,13 @@ public class MainMenu implements IMenu {
                 System.out.println("[7] Exit!");
 
 >>>>>>> Stashed changes
+<<<<<<< HEAD
+>>>>>>> test-branch
+=======
+=======
+                System.out.println("[5] Exit! ");
+
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
 >>>>>>> test-branch
                 System.out.print("\nEnter: ");
 
@@ -101,9 +120,16 @@ public class MainMenu implements IMenu {
                         System.out.println("CHECKOUT");
                         System.out.println("-------------------------------------------------------------------------------");
 <<<<<<< HEAD
+<<<<<<< HEAD
                         addProduct();
 =======
 <<<<<<< Updated upstream
+>>>>>>> test-branch
+=======
+<<<<<<< Updated upstream
+=======
+                        addProduct();
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
 >>>>>>> test-branch
                         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
                         LocalDateTime dateNow = LocalDateTime.now();
@@ -115,7 +141,10 @@ public class MainMenu implements IMenu {
                         break;
                     case "5":
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> test-branch
                         addProduct();
                         break exit;
                     case "6":
@@ -127,6 +156,11 @@ public class MainMenu implements IMenu {
                         break;
                     case "7":
 >>>>>>> Stashed changes
+<<<<<<< HEAD
+>>>>>>> test-branch
+=======
+=======
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
 >>>>>>> test-branch
                         break exit;
                     default:
@@ -147,14 +181,23 @@ public class MainMenu implements IMenu {
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< Updated upstream
                 System.out.print("\nSelect a location: ");
                 int index = scan.nextInt() - 1;
 >>>>>>> test-branch
+=======
+<<<<<<< Updated upstream
+                System.out.print("\nSelect a location: ");
+                int index = scan.nextInt() - 1;
+=======
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
+>>>>>>> test-branch
 
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
     private void chooseStore() {
@@ -163,16 +206,33 @@ public class MainMenu implements IMenu {
 =======
     private void chooseStore()  {
 >>>>>>> test-branch
+=======
+            }
+=======
+    private void chooseStore()  {
+=======
+
+    private void chooseStore() {
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
+>>>>>>> test-branch
         Scanner scan = new Scanner(System.in);
         List<Store> locations = storeService.getAllLocations();
 
 
         for (int i = 0; i < locations.size(); i++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
             System.out.println(" [" + i +"] " + locations.get(i).toString());
 =======
             System.out.println(" [" + i + "] " + locations.get(i).toString());
 >>>>>>> Stashed changes
+>>>>>>> test-branch
+=======
+            System.out.println(" [" + i + "] " + locations.get(i).toString());
+>>>>>>> Stashed changes
+=======
+            System.out.println(" [" + i +"] " + locations.get(i).toString());
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
 >>>>>>> test-branch
         }
         storeChooseExit:
@@ -187,14 +247,23 @@ public class MainMenu implements IMenu {
                 this.currentstore = locations.get(storeNum);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> test-branch
         System.out.print("\nSelect a location: ");
         int storeNum = scan.nextInt();
         this.currentstore=locations.get(storeNum);
 this.currentstore.toString();
 
 
+<<<<<<< HEAD
 =======
 >>>>>>> Stashed changes
+>>>>>>> test-branch
+=======
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
 >>>>>>> test-branch
 
                     this.currentstore.toString();
@@ -208,19 +277,30 @@ this.currentstore.toString();
         private void viewCart () {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     private void viewCart() {
         Cart userCart = cartService.getById(user.getUserID());
 =======
+=======
+>>>>>>> test-branch
 <<<<<<< Updated upstream
     private void viewCart(){
         Cart userCart= cartService.getById(user.getUserID());
 =======
         Cart userCart = cartService.getById(user.getUserID());
 >>>>>>> Stashed changes
+<<<<<<< HEAD
+>>>>>>> test-branch
+=======
+=======
+    private void viewCart() {
+        Cart userCart = cartService.getById(user.getUserID());
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
 >>>>>>> test-branch
         System.out.println(userCart.toString());
         }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     private void addProduct() {
 
@@ -240,6 +320,8 @@ this.currentstore.toString();
         this.userCart.setSoulID(products.get(iWant).getSoulID());
         productService.availUpdate(products.get(iWant).getSoulID());
 =======
+=======
+>>>>>>> test-branch
 <<<<<<< Updated upstream
    private void addProduct(){
     Scanner scan=new Scanner(System.in);
@@ -283,6 +365,28 @@ this.currentstore.toString();
 
             }
 >>>>>>> Stashed changes
+<<<<<<< HEAD
+>>>>>>> test-branch
+=======
+=======
+    private void addProduct() {
+
+        productService.getAllAtStore(currentstore.getStoreID());
+        System.out.println("\nViewing all products at store :"+ currentstore.getStoreID());
+        List<Product> products = productService.getAllAtStore(currentstore.getStoreID());
+        for (int i = 0; i < products.size(); i++) {
+            System.out.println(" [" + i +"] " + products.get(i).toString());
+        }
+
+        Scanner scan = new Scanner(System.in);
+      int iWant;
+
+        System.out.println("What do you want to purchase?");
+        iWant = scan.nextInt();
+
+        this.userCart.setSoulID(products.get(iWant).getSoulID());
+        productService.availUpdate(products.get(iWant).getSoulID());
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
 >>>>>>> test-branch
 
 

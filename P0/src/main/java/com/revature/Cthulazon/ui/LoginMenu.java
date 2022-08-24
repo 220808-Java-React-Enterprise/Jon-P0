@@ -66,6 +66,7 @@ public class LoginMenu implements IMenu {
                     try {
                         User user = userService.login(username, password);
 <<<<<<< HEAD
+<<<<<<< HEAD
                         Cart cart = cartService.getById(user.getUserID());
                         if (user.getRole().equals("ADMIN"))
                             new AdminMenu(user, new UserService(new UserDAO()), new StoreService(new StoreDAO()),new ProductService(new ProductDAO())).start();
@@ -75,6 +76,8 @@ public class LoginMenu implements IMenu {
                     } catch (InvalidUserException e) {
                         System.out.println(e.getMessage());
 =======
+=======
+>>>>>>> test-branch
 <<<<<<< Updated upstream
                         Cart cart=cartService.getById(user.getUserID());
                         if (user.getRole().equals("ADMIN")) new AdminMenu(user, new UserService(new UserDAO()), new StoreService(new StoreDAO())).start();
@@ -89,6 +92,19 @@ public class LoginMenu implements IMenu {
                     } catch (InvalidUserException e) {
                         System.out.println(e.getMessage());
 >>>>>>> Stashed changes
+<<<<<<< HEAD
+>>>>>>> test-branch
+=======
+=======
+                        Cart cart = cartService.getById(user.getUserID());
+                        if (user.getRole().equals("ADMIN"))
+                            new AdminMenu(user, new UserService(new UserDAO()), new StoreService(new StoreDAO()),new ProductService(new ProductDAO())).start();
+                        else
+                            new MainMenu(user, cart, new UserService(new UserDAO()), new StoreService(new StoreDAO()), new CartService(new cartDAO()), new OrderService(new OrderDAO()), new ProductService(new ProductDAO())).start();
+                        break exit;
+                    } catch (InvalidUserException e) {
+                        System.out.println(e.getMessage());
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
 >>>>>>> test-branch
                         break exit;
 

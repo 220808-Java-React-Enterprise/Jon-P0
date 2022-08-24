@@ -38,7 +38,10 @@ public class StoreDAO implements InterfaceDAO<Store> {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> test-branch
 <<<<<<< Updated upstream
         @Override
         public void delete (String id){
@@ -54,6 +57,11 @@ public class StoreDAO implements InterfaceDAO<Store> {
     }
 
 >>>>>>> Stashed changes
+<<<<<<< HEAD
+>>>>>>> test-branch
+=======
+=======
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
 >>>>>>> test-branch
 
     @Override
@@ -71,10 +79,13 @@ public class StoreDAO implements InterfaceDAO<Store> {
         List<Store> locations = new ArrayList<>();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         try (Connection con = ConnectionFactory.getInstance().getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM stores");
             ResultSet rs = ps.executeQuery();
 =======
+=======
+>>>>>>> test-branch
 <<<<<<< Updated upstream
                 while (rs.next()) {
                     Store store = new Store(rs.getString("storeID"), rs.getString("city"));
@@ -92,6 +103,14 @@ public class StoreDAO implements InterfaceDAO<Store> {
                 locations.add(store);
 >>>>>>> Stashed changes
             }
+<<<<<<< HEAD
+>>>>>>> test-branch
+=======
+=======
+        try (Connection con = ConnectionFactory.getInstance().getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM stores");
+            ResultSet rs = ps.executeQuery();
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
 >>>>>>> test-branch
 
             while (rs.next()) {

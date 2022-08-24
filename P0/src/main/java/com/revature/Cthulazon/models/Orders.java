@@ -16,12 +16,21 @@ public class Orders {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     public Orders(String orderID, String userID, String storeID, String date, int amount) {
 =======
+=======
+>>>>>>> test-branch
 <<<<<<< Updated upstream
     public Orders(String orderID, String cartID, String userID, String storeID, String date, int amount){}
 =======
     public Orders(String orderID, String userID, String storeID, Date date, int amount) {
+<<<<<<< HEAD
+>>>>>>> test-branch
+=======
+=======
+    public Orders(String orderID, String userID, String storeID, String date, int amount) {
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
 >>>>>>> test-branch
         this.orderID = orderID;
         this.userID = userID;
@@ -31,8 +40,14 @@ public class Orders {
 
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> Stashed changes
+>>>>>>> test-branch
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> bfab96b7f3f01318e73c4eac7b9abff3915cd093
 >>>>>>> test-branch
 
 
