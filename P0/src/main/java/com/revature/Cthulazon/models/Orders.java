@@ -9,13 +9,24 @@ public class Orders {
     String orderID ;
     String userID ;
     String storeID;
-    String date;
+    Date date;
     int amount;
 
     public Orders() {
     }
 
+<<<<<<< Updated upstream
     public Orders(String orderID, String cartID, String userID, String storeID, String date, int amount){}
+=======
+    public Orders(String orderID, String userID, String storeID, Date date, int amount) {
+        this.orderID = orderID;
+        this.userID = userID;
+        this.storeID = storeID;
+        this.date = date;
+        this.amount = amount;
+
+    }
+>>>>>>> Stashed changes
 
 
     public void setOrderID(String orderID) {
@@ -52,7 +63,7 @@ public class Orders {
         return storeID;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 

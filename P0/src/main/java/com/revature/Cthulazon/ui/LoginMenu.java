@@ -70,9 +70,20 @@ public class LoginMenu implements IMenu {
                 password = scan.nextLine();
                     try{
                         User user = userService.login(username, password);
+<<<<<<< Updated upstream
                         Cart cart=cartService.getById(user.getUserID());
                         if (user.getRole().equals("ADMIN")) new AdminMenu(user, new UserService(new UserDAO()), new StoreService(new StoreDAO())).start();
                         else new MainMenu(user,cart, new UserService(new UserDAO()), new StoreService(new StoreDAO()),new CartService(new cartDAO()),new OrderService(new OrderDAO())).start();
+=======
+                        Cart cart = cartService.getById(user.getUserID());
+                        if (user.getRole().equals("admin"))
+                            new AdminMenu(user, new UserService(new UserDAO()), new StoreService(new StoreDAO()),new ProductService(new ProductDAO()),new OrderService(new OrderDAO())).start();
+                        else
+                            new MainMenu(user, cart, new UserService(new UserDAO()), new StoreService(new StoreDAO()), new CartService(new CartDAO()), new OrderService(new OrderDAO()), new ProductService(new ProductDAO())).start();
+                        break exit;
+                    } catch (InvalidUserException e) {
+                        System.out.println(e.getMessage());
+>>>>>>> Stashed changes
                         break exit;
                     }catch(InvalidUserException e){
                     System.out.println(e.getMessage());

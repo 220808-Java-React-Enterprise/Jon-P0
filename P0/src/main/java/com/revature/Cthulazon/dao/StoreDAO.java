@@ -27,8 +27,21 @@ public class StoreDAO implements InterfaceDAO<Store> {
 
         }
 
+<<<<<<< Updated upstream
         @Override
         public void delete (String id){
+=======
+    public void updateInput(String obj,int count) {
+        try (Connection con = ConnectionFactory.getInstance().getConnection()) {
+            PreparedStatement ps = con.prepareStatement("Update stores set soulInventory=soulInventory+"+count+" where storeID=?");
+            ps.setString(1, obj);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new InvalidSQLException("An error occurred when trying to save to the database.");
+        }
+    }
+
+>>>>>>> Stashed changes
 
         }
 
@@ -45,12 +58,22 @@ public class StoreDAO implements InterfaceDAO<Store> {
                 PreparedStatement ps = con.prepareStatement("SELECT * FROM stores");
                 ResultSet rs = ps.executeQuery();
 
+<<<<<<< Updated upstream
                 while (rs.next()) {
                     Store store = new Store(rs.getString("storeID"), rs.getString("city"));
                     locations.add(store);
                 }
             } catch (SQLException e) {
                 throw new InvalidSQLException("An error occurred when trying to save to the database.");
+=======
+        try (Connection con = ConnectionFactory.getInstance().getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM stores");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Store store = new Store(rs.getString("storeID"),rs.getString("storeNumber"),rs.getString("city"),rs.getInt("soulInventory"));
+                locations.add(store);
+>>>>>>> Stashed changes
             }
 
             return locations;

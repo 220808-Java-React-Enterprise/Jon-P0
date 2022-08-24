@@ -7,9 +7,16 @@ import com.revature.Cthulazon.services.CartService;
 import com.revature.Cthulazon.services.UserService;
 import com.revature.Cthulazon.services.StoreService;
 import com.revature.Cthulazon.services.OrderService;
+<<<<<<< Updated upstream
+=======
+import com.revature.Cthulazon.services.ProductService;
+import com.revature.Cthulazon.utils.Custom_Exceptions.InvalidUserException;
+import com.revature.Cthulazon.utils.Custom_Exceptions.InvalidUserSelection;
+>>>>>>> Stashed changes
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
@@ -42,9 +49,17 @@ public class MainMenu implements IMenu {
                 System.out.println("[1] View all locations!");
                 System.out.println("[2] Select Store!");
                 System.out.println("[3] View Cart!");
+<<<<<<< Updated upstream
                 System.out.println("[4] CheckOut!");
                 System.out.println("[5] AddProduct! ");
                 System.out.println("[6] Exit");
+=======
+                System.out.println("[4] AddToCart!");
+                System.out.println("[5] CheckOut! ");
+                System.out.println("[6] OrderHistory!");
+                System.out.println("[7] Exit!");
+
+>>>>>>> Stashed changes
                 System.out.print("\nEnter: ");
 
                 switch (scan.nextLine()) {
@@ -61,8 +76,13 @@ public class MainMenu implements IMenu {
                         viewCart();
                         break;
                     case "4":
+                        addToCart();
+
+                        break;
+                    case "5":
                         System.out.println("CHECKOUT");
                         System.out.println("-------------------------------------------------------------------------------");
+<<<<<<< Updated upstream
                         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
                         LocalDateTime dateNow = LocalDateTime.now();
                         String date= String.valueOf(dateNow);
@@ -75,6 +95,14 @@ public class MainMenu implements IMenu {
                         addProduct();
                         break exit;
                     case "6":
+=======
+                        checkOut(userCart);
+                        break;
+                    case "6":
+                        viewOrderHistory();
+                        break;
+                    case "7":
+>>>>>>> Stashed changes
                         break exit;
                     default:
                         System.out.println("\nInvalid input!");
@@ -96,31 +124,136 @@ public class MainMenu implements IMenu {
                     System.out.println("[" + locations.get(i).getStoreID() + "] " + locations.get(i).getCity());
                 }
 
+<<<<<<< Updated upstream
                 System.out.print("\nSelect a location: ");
                 int index = scan.nextInt() - 1;
 
 
             }
+=======
+    private void chooseStore()  {
+        Scanner scan = new Scanner(System.in);
+        List<Store> locations = storeService.getAllLocations();
+
+
+        for (int i = 0; i < locations.size(); i++) {
+            System.out.println(" [" + i + "] " + locations.get(i).toString());
+>>>>>>> Stashed changes
         }
+        storeChooseExit:
+        {
+            {
+                System.out.print("\nSelect a location: ");
+                int storeNum = scan.nextInt();
+                    try {
 
+<<<<<<< Updated upstream
+=======
+                this.currentstore = locations.get(storeNum);
 
+>>>>>>> Stashed changes
+
+                    this.currentstore.toString();
+                } catch (InvalidUserSelection e) {
+                    System.out.println(e.getMessage());
+                    break storeChooseExit;
+                }
+            }
+        }
     }
+        private void viewCart () {
 
+<<<<<<< Updated upstream
     private void viewCart(){
         Cart userCart= cartService.getById(user.getUserID());
+=======
+        Cart userCart = cartService.getById(user.getUserID());
+>>>>>>> Stashed changes
         System.out.println(userCart.toString());
-    }
+        }
 
+<<<<<<< Updated upstream
    private void addProduct(){
     Scanner scan=new Scanner(System.in);
     String iWant;
 
             System.out.println("enter an productID!");
                     iWant=scan.nextLine();
+=======
+        private void addToCart () {
+
+            productService.getAllAvaliable(currentstore.getStoreID());
+            System.out.println("\nViewing all products at store :" + currentstore.getStoreNumber() + ":" + currentstore.getCity());
+            List<Product> products = productService.getAllAvaliable(currentstore.getStoreID());
+            for (int i = 0; i < products.size(); i++) {
+                System.out.println(" [" + i + "] " + products.get(i).toString());
+            }
+
+            Scanner scan = new Scanner(System.in);
+            int iWant;
+
+            System.out.println("What do you want to purchase?");
+            iWant = scan.nextInt();
+//INSERT RATHER THAN UPDATE
+            this.userCart.setSoulID(products.get(iWant).getSoulID());
+
+            cartService.update(userCart);
+        }
+
+           private void checkOut(Cart cart)
+            {
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+                LocalDateTime dateNow = LocalDateTime.now();
+                java.sql.Date sqlDate = java.sql.Date.valueOf(dateNow.toLocalDate());
+              Product product= productService.getById((cart.getSoulID()));
+                Orders order = new Orders(UUID.randomUUID().toString(), user.getUserID(), currentstore.getStoreID(), sqlDate, product.getCostToBuy());
+                orderService.saveOrder(order);
+                System.out.println(order.toString());
+                System.out.println("You now own:" + "SoulID:"+ userCart.getSoulID());
+                productService.availUpdate(userCart.getSoulID());
+                storeService.updateStoreInventory(currentstore.getStoreID(),-1);
+
+            }
+>>>>>>> Stashed changes
 
         userCart.setSoulID(iWant);
 
+private void viewOrderHistory() {
+
+    List<Orders> order = orderService.getHistory();
+    historyExit:
+    {
+        while (true) {
+            System.out.println("[1] sort by date!");
+            System.out.println("[2] sort by amount!");
+            System.out.println("[3] back to main!");
+
+            Scanner scan = new Scanner(System.in);
+            switch (scan.nextLine()) {
+                case "1":
+                    order.sort(Comparator.comparing((Orders::getDate)));
+                    break historyExit;
+                case "2":
+                    order.sort(Comparator.comparing((Orders::getAmount)));
+                    break historyExit;
+                case "3":
+                    break historyExit;
+                default:
+                    System.out.println("Invalid Input");
+                    break historyExit;
+            }
+        }
     }
 
+
+        for (int i = 0; i < order.size(); i++) {
+            System.out.println(" [" + i + "] " + order.get(i).toString());
+        }
+
+
+    }
 }
+
+
+
 

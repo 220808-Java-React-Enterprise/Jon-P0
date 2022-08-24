@@ -13,6 +13,15 @@ public class ProductService {
         productDAO.save(product);
     }
 
+<<<<<<< Updated upstream
+=======
+    public List<Product> getAllAtStore(String storeID) {
+        return productDAO.getAll(storeID);
+    }
+    public List<Product> getAllAvaliable(String storeID) {
+        return productDAO.getAllAvailable(storeID);
+    }
+>>>>>>> Stashed changes
 
     public Product getById(String soulID){
         Product product=productDAO.getById(soulID);
