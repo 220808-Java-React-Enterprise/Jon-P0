@@ -1,7 +1,10 @@
-# Jon-P0
+#Website: Cthulazon
 
-Website: Cthulazon
-Purpose: Sell Product(Souls)
+## Description
+Money can buy a lot of things, it can make your life very comfortable and with the technology avaliable to people today, we can live very long lives and hoard many things. However, this all ends when a life ends. Cthulazon is a nice simple website that facilitates the trading for the immortal soul for you to possess. These souls are absolutely immortal and indestructible. In fact, we offer a life-time warranty. These unqiue products are products that will follow you to the afterlife. Every wondered if you could reincarnate with someone? be able to enjoy a literal life-time friendship with somone and then know that in the next life they will be by your side?
+
+
+
 
 ## Progress:
 
