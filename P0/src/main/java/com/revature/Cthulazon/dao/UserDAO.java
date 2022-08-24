@@ -1,5 +1,6 @@
 package com.revature.Cthulazon.dao;
 
+import com.revature.Cthulazon.models.Store;
 import com.revature.Cthulazon.models.User;
 import com.revature.Cthulazon.utils.Custom_Exceptions.InvalidSQLException;
 import com.revature.Cthulazon.utils.database.ConnectionFactory;
@@ -8,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAO implements InterfaceDAO<User> {
@@ -74,6 +76,20 @@ public class UserDAO implements InterfaceDAO<User> {
 
     @Override
     public List<User> getAll() {
+List<User>users=new ArrayList();
+
+        try (Connection con = ConnectionFactory.getInstance().getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM users ");
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()) {
+                User user = new User(rs.getString("userID"),rs.getString("userName"),rs.getString("password"),rs.getString("firstname"),rs.getString("lastname"),rs.getString("emailaddress"));
+                users.add(user);
+            }
+
+        } catch (SQLException e) {
+            throw new InvalidSQLException("An error occurred when trying to save to the database.");
+        }
         return null;
     }
 

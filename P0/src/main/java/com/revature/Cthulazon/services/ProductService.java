@@ -15,9 +15,21 @@ public class ProductService {
         productDAO.save(product);
     }
 
+<<<<<<< HEAD
     public List<Product> getAllAtStore(String storeID) {
         return productDAO.getAll(storeID);
     }
+=======
+<<<<<<< Updated upstream
+=======
+    public List<Product> getAllAtStore(String storeID) {
+        return productDAO.getAll(storeID);
+    }
+    public List<Product> getAllAvaliable(String storeID) {
+        return productDAO.getAllAvailable(storeID);
+    }
+>>>>>>> Stashed changes
+>>>>>>> test-branch
 
 public void availUpdate(String soulID)
 {

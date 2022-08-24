@@ -52,5 +52,8 @@ public  void isValidCity(String city)
         throw new InvalidSQLException("Store is taken");
     }
 
+public void updateStoreInventory(String store,int count){
+        storeDAO.updateInput(store,count);
+}
 
     }
