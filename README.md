@@ -30,7 +30,7 @@ Admin
    * can see order history by store
    
  
-[https://imgur.com/XxAs039](https://imgur.com/XxAs039)
+[https://imgur.com/a/Sb1oQl4](https://imgur.com/a/Sb1oQl4)
 
 
 ### Technology
