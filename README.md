@@ -13,6 +13,23 @@ This website offers highly afforable and very reliable products offered through 
 *User
 
 
+## Features
+Users
+   * sign up
+   * login
+   * buy a product
+   * add product to cart
+   * view cart items
+   * view order history
+   * sort Order by cart
+
+Admin
+   * can replenish inventory
+   * can add new stores
+   * can add inventory to stores
+   * can see order history by store
+   
+ 
 
 
 
